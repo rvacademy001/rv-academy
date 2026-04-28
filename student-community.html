@@ -77,33 +77,9 @@
                     </div>
 
                     <!-- Feed Posts -->
-                    <div class="feed-post">
-                        <div class="post-header">
-                            <div class="post-user">
-                                <div class="avatar" style="width: 40px; height: 40px; font-size: 16px;">K</div>
-                                <div>
-                                    <div style="font-weight: 600;">Kamal Perera <i class="fa-solid fa-medal" style="color: #c0c0c0; font-size: 12px; margin-left: 5px;" title="Level 8 Trader"></i></div>
-                                    <div style="font-size: 12px; color: var(--text-muted);">2 hours ago • $XAUUSD</div>
-                                </div>
-                            </div>
-                        </div>
-                        <p>Waiting for gold to retrace to the order block before looking for buys. Any thoughts?</p>
-                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop" class="post-image" alt="Chart Analysis">
-                        <div class="post-actions">
-                            <button class="action-btn"><i class="fa-solid fa-thumbs-up"></i> 12 Likes</button>
-                            <button class="action-btn"><i class="fa-solid fa-comment"></i> 3 Comments</button>
-                        </div>
-                        
-                        <!-- Comments section -->
-                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05);">
-                            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                                <div class="avatar" style="width: 30px; height: 30px; font-size: 12px; background: var(--secondary);">N</div>
-                                <div>
-                                    <div style="font-size: 13px; font-weight: 600;">Nimali Silva</div>
-                                    <div style="font-size: 13px; color: var(--text-muted);">Looks solid. Be careful of news at 6 PM though.</div>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Feed Posts Container -->
+                    <div id="postsContainer">
+                        <div style="text-align: center; color: var(--text-muted); padding: 20px;">Loading posts...</div>
                     </div>
                 </div>
 
@@ -130,10 +106,10 @@
     </a>
 
     <!-- Firebase and Cloudinary logic for Posts -->
-    <script type="module">
-        import { db } from './js/firebase-config.js';
-        import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-compat.js"></script>
+    <script>
         let selectedImageUrl = "";
         const chartUpload = document.getElementById('chartUpload');
         const previewContainer = document.getElementById('imagePreviewContainer');
@@ -190,12 +166,12 @@
             submitBtn.disabled = true;
 
             try {
-                await addDoc(collection(db, "community_posts"), {
+                await window.db.collection("community_posts").add({
                     text: text,
                     imageUrl: selectedImageUrl,
                     userId: "student_mock_id", // In a real app, get from Auth
                     userName: "Student User",
-                    timestamp: serverTimestamp(),
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                     likes: 0,
                     comments: []
                 });
@@ -206,6 +182,8 @@
                 document.getElementById('postText').value = "";
                 document.getElementById('removeImageBtn').click();
                 
+                loadPosts(); // Reload posts
+                
             } catch (e) {
                 console.error("Error adding document: ", e);
                 alert("Failed to post.");
@@ -214,6 +192,51 @@
                 submitBtn.disabled = false;
             }
         });
+
+        async function loadPosts() {
+            const container = document.getElementById('postsContainer');
+            container.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 20px;"><i class="fa-solid fa-spinner fa-spin"></i> Loading...</div>';
+            
+            const posts = await window.getCommunityPosts();
+            if(posts.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 20px;">No posts yet. Be the first to post!</div>';
+                return;
+            }
+
+            container.innerHTML = '';
+            posts.forEach(post => {
+                let imgHtml = '';
+                if(post.imageUrl) {
+                    imgHtml = `<img src="${post.imageUrl}" class="post-image" alt="Chart Analysis">`;
+                }
+                
+                const timeStr = post.timestamp ? new Date(post.timestamp.seconds * 1000).toLocaleString() : 'Just now';
+                const avatarLetter = post.userName ? post.userName.charAt(0).toUpperCase() : 'U';
+
+                container.innerHTML += `
+                    <div class="feed-post">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <div class="avatar" style="width: 40px; height: 40px; font-size: 16px;">${avatarLetter}</div>
+                                <div>
+                                    <div style="font-weight: 600;">${post.userName || 'Student'}</div>
+                                    <div style="font-size: 12px; color: var(--text-muted);">${timeStr}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>${post.text || ''}</p>
+                        ${imgHtml}
+                        <div class="post-actions">
+                            <button class="action-btn"><i class="fa-solid fa-thumbs-up"></i> ${post.likes || 0} Likes</button>
+                            <button class="action-btn"><i class="fa-solid fa-comment"></i> ${post.comments ? post.comments.length : 0} Comments</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Load on page ready
+        loadPosts();
     </script>
 </body>
 </html>

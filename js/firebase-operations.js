@@ -46,6 +46,20 @@ export async function addCourseVideo(category, title, driveLink) {
     }
 }
 
+export async function getCourseVideos() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "course_videos"));
+        const videos = [];
+        querySnapshot.forEach((doc) => {
+            videos.push({ id: doc.id, ...doc.data() });
+        });
+        return videos;
+    } catch (e) {
+        console.error("Error fetching course videos: ", e);
+        return [];
+    }
+}
+
 // --- COMMUNITY POSTS ---
 export async function getCommunityPosts() {
     try {

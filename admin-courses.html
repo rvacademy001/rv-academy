@@ -51,43 +51,10 @@
             <div class="content-card">
                 <h3 style="margin-bottom: 20px;">Manage Curriculum</h3>
                 
-                <div style="display: flex; flex-direction: column; gap: 20px;">
-                    
-                    <!-- Category Block -->
-                    <div style="border: 1px solid var(--primary); border-radius: 10px; overflow: hidden;">
-                        <div style="background: rgba(0,255,136,0.1); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;">
-                            <h4 style="color: var(--primary); margin: 0;"><i class="fa-solid fa-folder-open"></i> CATEGORY: BEGINNER</h4>
-                            <div style="display: flex; gap: 10px;">
-                                <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px; border-color: var(--text-muted); color: var(--text-main);"><i class="fa-solid fa-pen"></i> Edit Category</button>
-                                <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px; border-color: var(--danger); color: var(--danger);"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-                        </div>
-                        <div style="padding: 15px 20px; background: rgba(0,0,0,0.2); display: flex; justify-content: space-between; border-bottom: 1px solid var(--border);">
-                            <div><strong>1.1 What is Forex/Crypto</strong> (12m 30s)</div>
-                            <div style="color: var(--text-muted);"><i class="fa-solid fa-pen" style="cursor: pointer;"></i></div>
-                        </div>
-                        <div style="padding: 15px 20px; background: rgba(0,0,0,0.2); display: flex; justify-content: space-between;">
-                            <div><strong>1.2 Brokers Setup</strong> (24m 10s)</div>
-                            <div style="color: var(--text-muted);"><i class="fa-solid fa-pen" style="cursor: pointer;"></i></div>
-                        </div>
+                    <!-- Dynamic Curriculum Container -->
+                    <div id="curriculumContainer">
+                        <div style="text-align: center; color: var(--text-muted); padding: 20px;">Loading course videos...</div>
                     </div>
-
-                    <!-- Category Block -->
-                    <div style="border: 1px solid var(--border); border-radius: 10px; overflow: hidden;">
-                        <div style="background: rgba(255,255,255,0.05); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;">
-                            <h4 style="color: var(--text-main); margin: 0;"><i class="fa-solid fa-folder-open"></i> CATEGORY: INTERMEDIATE</h4>
-                            <div style="display: flex; gap: 10px;">
-                                <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px; border-color: var(--text-muted); color: var(--text-main);"><i class="fa-solid fa-pen"></i> Edit Category</button>
-                                <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px; border-color: var(--danger); color: var(--danger);"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-                        </div>
-                        <div style="padding: 15px 20px; background: rgba(0,0,0,0.2); display: flex; justify-content: space-between;">
-                            <div><strong>2.1 Candlestick Patterns</strong> (45m 00s) + Quiz Attached</div>
-                            <div style="color: var(--text-muted);"><i class="fa-solid fa-pen" style="cursor: pointer;"></i></div>
-                        </div>
-                    </div>
-
-                </div>
             </div>
         </main>
     </div>
@@ -154,8 +121,54 @@
         </div>
     </div>
 
-    <script type="module">
-        import { addCourseVideo } from './js/firebase-operations.js';
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-compat.js"></script>
+    <script>
+        async function loadCurriculum() {
+            const container = document.getElementById('curriculumContainer');
+            const videos = await window.getCourseVideos();
+            
+            if (videos.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 20px;">No videos added yet.</div>';
+                return;
+            }
+
+            // Group videos by category
+            const grouped = {};
+            videos.forEach(v => {
+                const cat = (v.category || 'uncategorized').toUpperCase();
+                if(!grouped[cat]) grouped[cat] = [];
+                grouped[cat].push(v);
+            });
+
+            container.innerHTML = '<div style="display: flex; flex-direction: column; gap: 20px;"></div>';
+            const flexContainer = container.querySelector('div');
+
+            for (const [category, catVideos] of Object.entries(grouped)) {
+                let catHtml = `
+                    <div style="border: 1px solid var(--border); border-radius: 10px; overflow: hidden;">
+                        <div style="background: rgba(255,255,255,0.05); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;">
+                            <h4 style="color: var(--text-main); margin: 0;"><i class="fa-solid fa-folder-open"></i> CATEGORY: ${category}</h4>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px; border-color: var(--danger); color: var(--danger);"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                `;
+
+                catVideos.forEach(v => {
+                    catHtml += `
+                        <div style="padding: 15px 20px; background: rgba(0,0,0,0.2); display: flex; justify-content: space-between; border-bottom: 1px solid var(--border);">
+                            <div><strong>${v.title}</strong></div>
+                            <div style="color: var(--text-muted);"><i class="fa-solid fa-pen" style="cursor: pointer;"></i></div>
+                        </div>
+                    `;
+                });
+
+                catHtml += `</div>`;
+                flexContainer.innerHTML += catHtml;
+            }
+        }
 
         const form = document.getElementById('addVideoForm');
         form.addEventListener('submit', async (e) => {
@@ -170,10 +183,12 @@
                 const title = document.getElementById('videoTitle').value;
                 const link = document.getElementById('videoLink').value;
 
-                await addCourseVideo(category, title, link);
+                await window.addCourseVideo(category, title, link);
                 alert('Video added to database successfully!');
                 form.reset();
                 document.getElementById('addVideoModal').classList.remove('active');
+                
+                loadCurriculum(); // Reload the list
             } catch (err) {
                 alert('Error saving video. Please check console.');
             } finally {
@@ -181,6 +196,9 @@
                 btn.disabled = false;
             }
         });
+
+        // Initial Load
+        loadCurriculum();
     </script>
 </body>
 </html>

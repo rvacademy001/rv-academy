@@ -253,11 +253,10 @@
     </div>
 
     <script src="js/script.js"></script>
-    <script type="module">
-        import { db } from './js/firebase-config.js';
-        import { doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-
-        document.getElementById('picUpload').addEventListener('change', async function(e) {
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-compat.js"></script>
+    <script>
             const file = e.target.files[0];
             if(!file) return;
 
@@ -280,8 +279,8 @@
                     
                     // Save to Firestore
                     try {
-                        const userRef = doc(db, "users", "student_mock_id"); // Replace with actual user ID from Auth
-                        await updateDoc(userRef, {
+                        const userRef = window.db.collection("users").doc("student_mock_id"); // Replace with actual user ID from Auth
+                        await userRef.update({
                             profilePictureUrl: data.secure_url
                         });
                         alert('Profile picture updated and saved to database successfully!');
