@@ -17,15 +17,15 @@
             
             <div class="profile-widget" style="flex-direction: column; align-items: flex-start; gap: 10px;">
                 <div style="display: flex; gap: 15px; align-items: center; width: 100%;">
-                    <div class="avatar">S</div>
+                    <div class="avatar" id="profileAvatar" style="overflow: hidden; background-size: cover; background-position: center;">S</div>
                     <div class="info" style="flex: 1;">
-                        <div class="name">Student User</div>
-                        <div style="font-size: 11px; color: var(--primary);">Level 12 Trader</div>
+                        <div class="name" id="sidebarName">Loading...</div>
+                        <div style="font-size: 11px; color: var(--primary);" id="sidebarLevel">Loading...</div>
                     </div>
                 </div>
                 <div style="width: 100%;">
-                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span>XP: 2450/3000</span></div>
-                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div style="background: var(--primary); width: 80%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
+                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span id="sidebarXP">XP: ...</span></div>
+                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div id="sidebarXPBar" style="background: var(--primary); width: 0%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
                 </div>
                 <div style="display: flex; gap: 5px; margin-top: 5px;">
                     <span title="Risk Manager" style="font-size: 14px; color: #00bfff;"><i class="fa-solid fa-shield-halved"></i></span>
@@ -41,7 +41,7 @@
                 <li><a href="student-community.html" class="active"><i class="fa-solid fa-users"></i> Community</a></li>
                 <li><a href="student-tools.html"><i class="fa-solid fa-toolbox"></i> Trading Tools</a></li>
                 <li><a href="student-affiliate.html"><i class="fa-solid fa-handshake"></i> Affiliate Program</a></li>
-                <li style="margin-top: auto; padding-top: 50px;"><a href="index.html" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                <li style="margin-top: auto; padding-top: 50px;"><a href="#" onclick="if(window.logoutUser) window.logoutUser();" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             </ul>
         </aside>
 
@@ -107,9 +107,41 @@
 
     <!-- Firebase and Cloudinary logic for Posts -->
     <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
     <script src="js/firebase-compat.js"></script>
     <script>
+        let currentUserProfile = null;
+        let currentUserId = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            window.auth.onAuthStateChanged(async (user) => {
+                if (user) {
+                    currentUserId = user.uid;
+                    const profile = await window.getCurrentUserProfile(user.uid);
+                    if (profile) {
+                        currentUserProfile = profile;
+                        document.getElementById('sidebarName').textContent = profile.name || user.email;
+                        document.getElementById('sidebarLevel').textContent = profile.level || 'Beginner';
+                        
+                        const xp = profile.xp || 0;
+                        document.getElementById('sidebarXP').textContent = `XP: ${xp}`;
+                        document.getElementById('sidebarXPBar').style.width = Math.min((xp / 5000) * 100, 100) + '%';
+                        
+                        const avatarEl = document.getElementById('profileAvatar');
+                        if (profile.profilePictureUrl) {
+                            avatarEl.innerHTML = '';
+                            avatarEl.style.backgroundImage = `url(${profile.profilePictureUrl})`;
+                        } else {
+                            avatarEl.innerHTML = (profile.name || user.email).charAt(0).toUpperCase();
+                        }
+                    }
+                    loadPosts();
+                } else {
+                    window.location.href = 'login.html';
+                }
+            });
+        });
         let selectedImageUrl = "";
         const chartUpload = document.getElementById('chartUpload');
         const previewContainer = document.getElementById('imagePreviewContainer');
@@ -169,8 +201,9 @@
                 await window.db.collection("community_posts").add({
                     text: text,
                     imageUrl: selectedImageUrl,
-                    userId: "student_mock_id", // In a real app, get from Auth
-                    userName: "Student User",
+                    userId: currentUserId || "unknown",
+                    userName: currentUserProfile ? currentUserProfile.name : "Student User",
+                    userAvatar: currentUserProfile ? currentUserProfile.profilePictureUrl : "",
                     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                     likes: 0,
                     comments: []
@@ -212,12 +245,17 @@
                 
                 const timeStr = post.timestamp ? new Date(post.timestamp.seconds * 1000).toLocaleString() : 'Just now';
                 const avatarLetter = post.userName ? post.userName.charAt(0).toUpperCase() : 'U';
+                
+                let avatarHtml = `<div class="avatar" style="width: 40px; height: 40px; font-size: 16px;">${avatarLetter}</div>`;
+                if(post.userAvatar) {
+                    avatarHtml = `<div class="avatar" style="width: 40px; height: 40px; font-size: 16px; background-image: url(${post.userAvatar}); background-size: cover; background-position: center; color: transparent;">${avatarLetter}</div>`;
+                }
 
                 container.innerHTML += `
                     <div class="feed-post">
                         <div class="post-header">
                             <div class="post-user">
-                                <div class="avatar" style="width: 40px; height: 40px; font-size: 16px;">${avatarLetter}</div>
+                                ${avatarHtml}
                                 <div>
                                     <div style="font-weight: 600;">${post.userName || 'Student'}</div>
                                     <div style="font-size: 12px; color: var(--text-muted);">${timeStr}</div>
@@ -235,8 +273,6 @@
             });
         }
 
-        // Load on page ready
-        loadPosts();
     </script>
 </body>
 </html>

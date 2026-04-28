@@ -17,15 +17,15 @@
             
             <div class="profile-widget" style="flex-direction: column; align-items: flex-start; gap: 10px;">
                 <div style="display: flex; gap: 15px; align-items: center; width: 100%;">
-                    <div class="avatar">S</div>
+                    <div class="avatar" id="profileAvatar" style="overflow: hidden; background-size: cover; background-position: center;">S</div>
                     <div class="info" style="flex: 1;">
-                        <div class="name">Student User</div>
-                        <div style="font-size: 11px; color: var(--primary);">Level 12 Trader</div>
+                        <div class="name" id="sidebarName">Loading...</div>
+                        <div style="font-size: 11px; color: var(--primary);" id="sidebarLevel">Loading...</div>
                     </div>
                 </div>
                 <div style="width: 100%;">
-                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span>XP: 2450/3000</span></div>
-                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div style="background: var(--primary); width: 80%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
+                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span id="sidebarXP">XP: ...</span></div>
+                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div id="sidebarXPBar" style="background: var(--primary); width: 0%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
                 </div>
                 <div style="display: flex; gap: 5px; margin-top: 5px;">
                     <span title="Risk Manager" style="font-size: 14px; color: #00bfff;"><i class="fa-solid fa-shield-halved"></i></span>
@@ -41,7 +41,7 @@
                 <li><a href="student-community.html"><i class="fa-solid fa-users"></i> Community</a></li>
                 <li><a href="student-tools.html"><i class="fa-solid fa-toolbox"></i> Trading Tools</a></li>
                 <li><a href="student-affiliate.html"><i class="fa-solid fa-handshake"></i> Affiliate Program</a></li>
-                <li style="margin-top: auto; padding-top: 50px;"><a href="index.html" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                <li style="margin-top: auto; padding-top: 50px;"><a href="#" onclick="if(window.logoutUser) window.logoutUser();" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             </ul>
         </aside>
 
@@ -149,5 +149,37 @@
         </main>
     </div>
 
+    <script src="js/script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-compat.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.auth.onAuthStateChanged(async (user) => {
+                if (user) {
+                    const profile = await window.getCurrentUserProfile(user.uid);
+                    if (profile) {
+                        document.getElementById('sidebarName').textContent = profile.name || user.email;
+                        document.getElementById('sidebarLevel').textContent = profile.level || 'Beginner';
+                        
+                        const xp = profile.xp || 0;
+                        document.getElementById('sidebarXP').textContent = `XP: ${xp}`;
+                        document.getElementById('sidebarXPBar').style.width = Math.min((xp / 5000) * 100, 100) + '%';
+                        
+                        const avatarEl = document.getElementById('profileAvatar');
+                        if (profile.profilePictureUrl) {
+                            avatarEl.innerHTML = '';
+                            avatarEl.style.backgroundImage = `url(${profile.profilePictureUrl})`;
+                        } else {
+                            avatarEl.innerHTML = (profile.name || user.email).charAt(0).toUpperCase();
+                        }
+                    }
+                } else {
+                    window.location.href = 'login.html';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

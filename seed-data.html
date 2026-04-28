@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed Database | RV ACADEMY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { padding: 50px; text-align: center; }
+        .log { margin-top: 20px; text-align: left; background: #111; padding: 20px; border-radius: 10px; max-height: 400px; overflow-y: auto; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>Database Seeder</h1>
+    <p>Run this script once to populate your Firestore database with initial mock data.</p>
+    
+    <button id="seedUsersBtn" class="btn btn-primary" style="margin: 10px;">Seed Users</button>
+    <button id="seedCoursesBtn" class="btn btn-primary" style="margin: 10px;">Seed Courses & Videos</button>
+    <button id="seedPostsBtn" class="btn btn-primary" style="margin: 10px;">Seed Community Posts</button>
+    
+    <div class="log" id="logBox">Waiting to start...</div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-compat.js"></script>
+    <script>
+        const logBox = document.getElementById('logBox');
+        function log(msg) {
+            logBox.innerHTML += `<div>> ${msg}</div>`;
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        document.getElementById('seedUsersBtn').addEventListener('click', async () => {
+            log("Starting Users Seed...");
+            try {
+                // Warning: Can't create auth users easily from client without login, so we just create firestore docs.
+                // You must manually create an auth user with email 'student@email.com' in Firebase Console, 
+                // get its UID, and replace "test_student_uid" below with that actual UID.
+                const users = [
+                    {
+                        id: "test_student_uid", // Replace with real Auth UID
+                        name: "Student User",
+                        email: "student@email.com",
+                        level: "Level 12 Trader",
+                        xp: 2450,
+                        role: "student",
+                        learningStreak: 5,
+                        lessonsCompleted: 12,
+                        totalLessons: 50,
+                        activeSignals: 3,
+                        enrollmentDate: firebase.firestore.FieldValue.serverTimestamp(),
+                        status: "Active"
+                    },
+                    {
+                        id: "admin_uid", // Replace with real Auth UID
+                        name: "Super Admin",
+                        email: "rvacademyxm@gmail.com",
+                        role: "admin",
+                        enrollmentDate: firebase.firestore.FieldValue.serverTimestamp()
+                    },
+                    {
+                        id: "mock_user_1",
+                        name: "Kamal Perera",
+                        email: "kamal@email.com",
+                        level: "Level 15",
+                        xp: 4200,
+                        role: "student",
+                        status: "Active",
+                        enrollmentDate: firebase.firestore.FieldValue.serverTimestamp()
+                    },
+                    {
+                        id: "mock_user_2",
+                        name: "Nimali Silva",
+                        email: "nimali@email.com",
+                        level: "Level 10",
+                        xp: 2100,
+                        role: "student",
+                        status: "Active",
+                        enrollmentDate: firebase.firestore.FieldValue.serverTimestamp()
+                    }
+                ];
+
+                for (const user of users) {
+                    await window.db.collection("users").doc(user.id).set(user);
+                    log(`Created user: ${user.name}`);
+                }
+                log("Users Seed Completed!");
+            } catch (e) {
+                log(`<span style="color:red">Error: ${e.message}</span>`);
+            }
+        });
+
+        document.getElementById('seedCoursesBtn').addEventListener('click', async () => {
+            log("Starting Courses Seed...");
+            try {
+                // Courses / Categories
+                const courses = [
+                    { id: "beginner", title: "Beginner", order: 1 },
+                    { id: "intermediate", title: "Intermediate", order: 2 },
+                    { id: "advanced", title: "Advanced", order: 3 }
+                ];
+                
+                for (const c of courses) {
+                    await window.db.collection("courses").doc(c.id).set(c);
+                }
+
+                // Videos
+                const videos = [
+                    { categoryId: "beginner", moduleNumber: "1.1", title: "What is Forex/Crypto", driveLink: "https://www.youtube.com/embed/ScMzIvxBSi4?controls=0&modestbranding=1", isLocked: false, order: 1 },
+                    { categoryId: "beginner", moduleNumber: "1.2", title: "Brokers Setup", driveLink: "https://www.youtube.com/embed/ScMzIvxBSi4?controls=0&modestbranding=1", isLocked: false, order: 2 },
+                    { categoryId: "intermediate", moduleNumber: "2.1", title: "Candlestick Patterns", driveLink: "https://www.youtube.com/embed/ScMzIvxBSi4?controls=0&modestbranding=1", isLocked: false, order: 1, isCurrent: true },
+                    { categoryId: "intermediate", moduleNumber: "2.2", title: "Support & Resistance", driveLink: "https://www.youtube.com/embed/ScMzIvxBSi4?controls=0&modestbranding=1", isLocked: true, order: 2 }
+                ];
+
+                for (const v of videos) {
+                    await window.db.collection("course_videos").add(v);
+                    log(`Created video: ${v.title}`);
+                }
+                log("Courses Seed Completed!");
+            } catch (e) {
+                log(`<span style="color:red">Error: ${e.message}</span>`);
+            }
+        });
+
+        document.getElementById('seedPostsBtn').addEventListener('click', async () => {
+            log("Starting Posts Seed...");
+            try {
+                const posts = [
+                    {
+                        text: "Just hit my TP on Gold! What a beautiful setup today.",
+                        imageUrl: "",
+                        userId: "mock_user_1",
+                        userName: "Kamal Perera",
+                        likes: 12,
+                        comments: ["Awesome bro!", "Send the analysis chart please."],
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    },
+                    {
+                        text: "Can someone explain the current BTC price action?",
+                        imageUrl: "",
+                        userId: "mock_user_2",
+                        userName: "Nimali Silva",
+                        likes: 3,
+                        comments: ["It's currently retesting the weekly support."],
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    }
+                ];
+
+                for (const p of posts) {
+                    await window.db.collection("community_posts").add(p);
+                    log(`Created post by: ${p.userName}`);
+                }
+                log("Posts Seed Completed!");
+            } catch (e) {
+                log(`<span style="color:red">Error: ${e.message}</span>`);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -14,18 +14,18 @@
             <div class="logo" style="margin-bottom: 20px;">
                 <i class="fa-solid fa-chart-line"></i> RV <span>ACADEMY</span>
             </div>
-            
             <div class="profile-widget" style="flex-direction: column; align-items: flex-start; gap: 10px;">
                 <div style="display: flex; gap: 15px; align-items: center; width: 100%;">
-                    <div class="avatar">S</div>
+                    <div class="avatar" id="profileAvatar" style="cursor: pointer; overflow: hidden; background-size: cover; background-position: center;" onclick="document.getElementById('picUpload').click()" title="Click to upload profile picture">S</div>
+                    <input type="file" id="picUpload" style="display: none;" accept="image/*">
                     <div class="info" style="flex: 1;">
-                        <div class="name">Student User</div>
-                        <div style="font-size: 11px; color: var(--primary);">Level 12 Trader</div>
+                        <div class="name" id="sidebarName">Loading...</div>
+                        <div style="font-size: 11px; color: var(--primary);" id="sidebarLevel">Loading...</div>
                     </div>
                 </div>
                 <div style="width: 100%;">
-                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span>XP: 2450/3000</span></div>
-                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div style="background: var(--primary); width: 80%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
+                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span id="sidebarXP">XP: ...</span></div>
+                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div id="sidebarXPBar" style="background: var(--primary); width: 0%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
                 </div>
                 <div style="display: flex; gap: 5px; margin-top: 5px;">
                     <span title="Risk Manager" style="font-size: 14px; color: #00bfff;"><i class="fa-solid fa-shield-halved"></i></span>
@@ -41,7 +41,7 @@
                 <li><a href="student-community.html"><i class="fa-solid fa-users"></i> Community</a></li>
                 <li><a href="student-tools.html"><i class="fa-solid fa-toolbox"></i> Trading Tools</a></li>
                 <li><a href="student-affiliate.html"><i class="fa-solid fa-handshake"></i> Affiliate Program</a></li>
-                <li style="margin-top: auto; padding-top: 50px;"><a href="index.html" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                <li style="margin-top: auto; padding-top: 50px;"><a href="#" onclick="if(window.logoutUser) window.logoutUser();" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             </ul>
         </aside>
 
@@ -61,7 +61,7 @@
                                 <i class="fa-solid fa-play" style="margin-left: 5px;"></i>
                             </div>
                         </div>
-                        <iframe class="course-video" src="https://www.youtube.com/embed/ScMzIvxBSi4?controls=0&modestbranding=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; pointer-events: none;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe id="mainVideoPlayer" class="course-video" src="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; pointer-events: none;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
 
                     <div class="content-card">
@@ -76,10 +76,10 @@
                         <!-- TAB CONTENT: OVERVIEW -->
                         <div id="overview" class="tab-content active">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                                <h2>Candlestick Reversal Patterns</h2>
+                                <h2 id="videoTitle">Select a video</h2>
                                 <button class="btn btn-outline" style="padding: 8px 15px;"><i class="fa-solid fa-download"></i> Resources</button>
                             </div>
-                            <p style="color: var(--text-muted);">In this critical lesson, we dive deep into the psychology behind candlestick wicks and bodies. Learn how institutional footprints are left on the chart through specific patterns like Pinbars, Engulfing candles, and Dojis. Take notes as this forms the foundation for entry triggers.</p>
+                            <p style="color: var(--text-muted);" id="videoDescription">Description will appear here.</p>
                         </div>
 
                         <!-- TAB CONTENT: Q&A -->
@@ -176,46 +176,8 @@
                             </div>
                         </div>
 
-                        <div style="overflow-y: auto; flex: 1;">
-                            
-                            <!-- CATEGORY: BEGINNER -->
-                            <div class="category-header">
-                                CATEGORY: BEGINNER <i class="fa-solid fa-chevron-down"></i>
-                            </div>
-                            <!-- Module 1 -->
-                            <div style="padding: 15px 20px; background: rgba(0,0,0,0.2); font-weight: 600; font-size: 14px; display: flex; justify-content: space-between; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                                <span>1. Intro to Markets</span>
-                            </div>
-                            <div style="padding: 10px 20px; display: flex; gap: 15px; align-items: center; font-size: 13px;">
-                                <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i>
-                                <span style="color: var(--text-muted);">1.1 What is Forex/Crypto</span>
-                            </div>
-                            <div style="padding: 10px 20px; display: flex; gap: 15px; align-items: center; font-size: 13px;">
-                                <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i>
-                                <span style="color: var(--text-muted);">1.2 Brokers Setup</span>
-                            </div>
-
-                            <!-- CATEGORY: INTERMEDIATE -->
-                            <div class="category-header" style="margin-top: 10px;">
-                                CATEGORY: INTERMEDIATE <i class="fa-solid fa-chevron-up"></i>
-                            </div>
-                            <!-- Module 2 -->
-                            <div style="padding: 15px 20px; background: rgba(0,0,0,0.2); font-weight: 600; font-size: 14px; display: flex; justify-content: space-between; cursor: pointer;">
-                                <span>2. Technical Analysis</span>
-                            </div>
-                            <div style="padding: 10px 20px; display: flex; gap: 15px; align-items: center; font-size: 13px; background: rgba(0,255,136,0.1); border-left: 3px solid var(--primary);">
-                                <i class="fa-solid fa-circle-play" style="color: var(--primary);"></i>
-                                <span style="color: var(--text-main); font-weight: 500;">2.1 Candlestick Patterns</span>
-                            </div>
-                            <div style="padding: 10px 20px; display: flex; gap: 15px; align-items: center; font-size: 13px;">
-                                <i class="fa-solid fa-lock" style="color: var(--text-muted);"></i>
-                                <span style="color: var(--text-muted);">2.2 Support & Resistance</span>
-                            </div>
-
-                            <!-- CATEGORY: ADVANCED -->
-                            <div class="category-header" style="margin-top: 10px;">
-                                CATEGORY: ADVANCED (Locked) <i class="fa-solid fa-lock" style="color: var(--text-muted); font-size: 12px;"></i>
-                            </div>
+                        <div style="overflow-y: auto; flex: 1;" id="coursePlaylistContainer">
+                            <div style="padding: 20px; text-align: center; color: var(--text-muted);">Loading playlist...</div>
                         </div>
                     </div>
                 </div>
@@ -230,16 +192,119 @@
     </a>
 
     <script src="js/script.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-compat.js"></script>
+    
     <script>
         function switchTab(tabId, element) {
-            // Remove active from all tabs
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            
-            // Add active to clicked tab
             element.classList.add('active');
             document.getElementById(tabId).classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            window.auth.onAuthStateChanged(async (user) => {
+                if (user) {
+                    const profile = await window.getCurrentUserProfile(user.uid);
+                    if (profile) {
+                        document.getElementById('sidebarName').textContent = profile.name || user.email;
+                        document.getElementById('sidebarLevel').textContent = profile.level || 'Beginner';
+                        
+                        const xp = profile.xp || 0;
+                        document.getElementById('sidebarXP').textContent = `XP: ${xp}`;
+                        document.getElementById('sidebarXPBar').style.width = Math.min((xp / 5000) * 100, 100) + '%';
+                        
+                        const avatarEl = document.getElementById('profileAvatar');
+                        if (profile.profilePictureUrl) {
+                            avatarEl.innerHTML = '';
+                            avatarEl.style.backgroundImage = `url(${profile.profilePictureUrl})`;
+                        } else {
+                            avatarEl.innerHTML = (profile.name || user.email).charAt(0).toUpperCase();
+                        }
+                    }
+                    loadPlaylist();
+                } else {
+                    window.location.href = 'login.html';
+                }
+            });
+        });
+
+        async function loadPlaylist() {
+            const container = document.getElementById('coursePlaylistContainer');
+            try {
+                // Fetch Categories
+                const coursesSnap = await window.db.collection('courses').orderBy('order').get();
+                // Fetch Videos
+                const videosSnap = await window.db.collection('course_videos').orderBy('order').get();
+                
+                const videos = [];
+                videosSnap.forEach(doc => videos.push({ id: doc.id, ...doc.data() }));
+
+                container.innerHTML = '';
+                
+                let firstVideoSet = false;
+
+                coursesSnap.forEach(doc => {
+                    const course = doc.data();
+                    let html = `
+                        <div class="category-header" style="margin-top: 10px; cursor: pointer;" onclick="toggleCourseBody(this)">
+                            CATEGORY: ${course.title.toUpperCase()} <i class="fa-solid fa-chevron-down" style="float:right;"></i>
+                        </div>
+                        <div class="course-body" style="display: block;">
+                    `;
+
+                    const courseVideos = videos.filter(v => v.categoryId === doc.id);
+                    courseVideos.forEach(v => {
+                        const isLocked = v.isLocked ? '<i class="fa-solid fa-lock" style="color: var(--text-muted);"></i>' : '<i class="fa-solid fa-circle-play" style="color: var(--primary);"></i>';
+                        const lockedStyle = v.isLocked ? 'color: var(--text-muted); pointer-events: none;' : 'cursor: pointer;';
+                        
+                        if(!firstVideoSet && !v.isLocked && v.driveLink) {
+                            playVideo(v.title, v.driveLink, v.description);
+                            firstVideoSet = true;
+                        }
+
+                        html += `
+                            <div style="padding: 10px 20px; display: flex; gap: 15px; align-items: center; font-size: 13px; ${lockedStyle} border-bottom: 1px solid rgba(255,255,255,0.02);" onclick="playVideo('${v.title}', '${v.driveLink}', '${v.description || ''}')">
+                                ${isLocked}
+                                <span>${v.moduleNumber ? v.moduleNumber + ' ' : ''}${v.title}</span>
+                            </div>
+                        `;
+                    });
+
+                    html += `</div>`;
+                    container.innerHTML += html;
+                });
+                
+                if(coursesSnap.empty) {
+                    container.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-muted);">No courses found.</div>';
+                }
+            } catch(e) {
+                console.error("Error loading playlist:", e);
+                container.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--danger);">Failed to load courses.</div>';
+            }
+        }
+
+        function playVideo(title, url, description) {
+            document.getElementById('mainVideoPlayer').src = url;
+            document.getElementById('videoTitle').textContent = title;
+            document.getElementById('videoDescription').textContent = description || "In this critical lesson, we dive deep into the topic. Take notes as this forms the foundation for your learning.";
+        }
+
+        function toggleCourseBody(headerEl) {
+            const body = headerEl.nextElementSibling;
+            const icon = headerEl.querySelector('i');
+            if(body.style.display === 'none') {
+                body.style.display = 'block';
+                icon.className = 'fa-solid fa-chevron-down';
+                icon.style.float = 'right';
+            } else {
+                body.style.display = 'none';
+                icon.className = 'fa-solid fa-chevron-up';
+                icon.style.float = 'right';
+            }
         }
     </script>
 </body>

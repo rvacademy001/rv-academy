@@ -29,10 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Login Form Handler to simulate advanced routing
+    // Login Form Handler with Firebase Auth
     const loginForm = document.getElementById('loginForm');
     if(loginForm) {
-        loginForm.addEventListener('submit', (e) => {
+        loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
@@ -42,19 +42,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Authenticating...';
             btn.style.opacity = '0.8';
+            btn.disabled = true;
             
-            setTimeout(() => {
-                if(email === 'rvacademyxm@gmail.com' && password === 'Prashan2002') {
-                    window.location.href = 'admin-dashboard.html';
-                } else if(email.includes('@') && password.length > 0 && email !== 'rvacademyxm@gmail.com') {
-                    // Assume valid student login
-                    window.location.href = 'student-dashboard.html';
+            try {
+                if(window.loginUser) {
+                    const user = await window.loginUser(email, password);
+                    // Fetch user role
+                    const profile = await window.getCurrentUserProfile(user.uid);
+                    
+                    if (profile && profile.role === 'admin') {
+                        window.location.href = 'admin-dashboard.html';
+                    } else {
+                        // Assume student or default
+                        window.location.href = 'student-dashboard.html';
+                    }
                 } else {
-                    alert('Invalid credentials!');
-                    btn.innerHTML = originalText;
-                    btn.style.opacity = '1';
+                    alert("Firebase is not initialized correctly.");
                 }
-            }, 800);
+            } catch (error) {
+                alert('Invalid credentials or error: ' + error.message);
+                btn.innerHTML = originalText;
+                btn.style.opacity = '1';
+                btn.disabled = false;
+            }
         });
     }
 

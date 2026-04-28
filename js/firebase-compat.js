@@ -14,6 +14,42 @@ if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
 const db = firebase.firestore();
+const auth = firebase.auth();
+
+// --- AUTH OPERATIONS ---
+async function loginUser(email, password) {
+    try {
+        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        return userCredential.user;
+    } catch (error) {
+        console.error("Login failed: ", error);
+        throw error;
+    }
+}
+
+async function logoutUser() {
+    try {
+        await auth.signOut();
+        window.location.href = "login.html";
+    } catch (error) {
+        console.error("Logout error: ", error);
+    }
+}
+
+async function getCurrentUserProfile(uid) {
+    try {
+        const docRef = await db.collection("users").doc(uid).get();
+        if (docRef.exists) {
+            return docRef.data();
+        } else {
+            return null;
+        }
+    } catch (e) {
+        console.error("Error fetching user profile: ", e);
+        return null;
+    }
+}
+
 
 // --- STUDENT OPERATIONS ---
 async function getStudents() {
@@ -91,6 +127,10 @@ async function getCommunityPosts() {
 
 // Make functions globally available
 window.db = db;
+window.auth = auth;
+window.loginUser = loginUser;
+window.logoutUser = logoutUser;
+window.getCurrentUserProfile = getCurrentUserProfile;
 window.getStudents = getStudents;
 window.getCourses = getCourses;
 window.getCourseVideos = getCourseVideos;

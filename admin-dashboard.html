@@ -63,8 +63,8 @@
                     </div>
                     <div>
                         <h4 style="color: var(--text-muted); font-size: 14px; font-weight: 500;">Total Students</h4>
-                        <div style="font-size: 24px; font-weight: 600;">1,248</div>
-                        <div style="font-size: 12px; color: var(--primary); margin-top: 5px;"><i class="fa-solid fa-arrow-trend-up"></i> +12 this week</div>
+                        <div id="totalStudentsCount" style="font-size: 24px; font-weight: 600;">Loading...</div>
+                        <div style="font-size: 12px; color: var(--primary); margin-top: 5px;"><i class="fa-solid fa-arrow-trend-up"></i> live from DB</div>
                     </div>
                 </div>
                 <div class="stat-card">
@@ -113,28 +113,8 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Kamal Perera</td>
-                                <td>kamal@email.com</td>
-                                <td>Oct 24, 2024</td>
-                                <td><span class="status-badge success">Active</span></td>
-                                <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">Manage</button></td>
-                            </tr>
-                            <tr>
-                                <td>Nimali Silva</td>
-                                <td>nimali@email.com</td>
-                                <td>Oct 23, 2024</td>
-                                <td><span class="status-badge success">Active</span></td>
-                                <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">Manage</button></td>
-                            </tr>
-                            <tr>
-                                <td>Kasun Fernando</td>
-                                <td>kasun@email.com</td>
-                                <td>Oct 22, 2024</td>
-                                <td><span class="status-badge danger">Suspended</span></td>
-                                <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;">Manage</button></td>
-                            </tr>
+                        <tbody id="recentEnrollmentsBody">
+                            <tr><td colspan="5" style="text-align: center; padding: 20px;">Loading enrollments...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -167,7 +147,69 @@
     </div>
 
     <script src="js/script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-compat.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.auth.onAuthStateChanged(async (user) => {
+                if (user) {
+                    const profile = await window.getCurrentUserProfile(user.uid);
+                    if (profile && profile.role === 'admin') {
+                        // Authorized
+                        loadDashboardData();
+                    } else {
+                        alert("Unauthorized access.");
+                        window.location.href = 'index.html';
+                    }
+                } else {
+                    window.location.href = 'login.html';
+                }
+            });
+        });
+
+        async function loadDashboardData() {
+            try {
+                // Fetch Students
+                const studentsSnap = await window.db.collection('users').where('role', '==', 'student').orderBy('enrollmentDate', 'desc').get();
+                
+                // Update Total Count
+                document.getElementById('totalStudentsCount').textContent = studentsSnap.size;
+
+                // Update Recent Enrollments Table
+                const tbody = document.getElementById('recentEnrollmentsBody');
+                tbody.innerHTML = '';
+                
+                let count = 0;
+                studentsSnap.forEach(doc => {
+                    if (count >= 5) return; // Show only 5 recent
+                    const student = doc.data();
+                    const dateObj = student.enrollmentDate ? student.enrollmentDate.toDate() : new Date();
+                    const dateStr = dateObj.toLocaleDateString();
+                    const statusClass = student.status === 'Active' ? 'success' : 'danger';
+                    
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${student.name || 'Unknown'}</td>
+                            <td>${student.email || 'N/A'}</td>
+                            <td>${dateStr}</td>
+                            <td><span class="status-badge ${statusClass}">${student.status || 'Pending'}</span></td>
+                            <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="window.location.href='admin-students.html'">Manage</button></td>
+                        </tr>
+                    `;
+                    count++;
+                });
+
+                if (studentsSnap.empty) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 20px;">No students found</td></tr>';
+                }
+                
+            } catch (error) {
+                console.error("Error loading dashboard data:", error);
+            }
+        }
+
         function toggleMaintenance() {
             const overlay = document.getElementById('maintenanceOverlay');
             if(overlay.style.display === 'none') {

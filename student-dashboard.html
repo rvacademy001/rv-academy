@@ -49,13 +49,13 @@
                     <div class="avatar" id="profileAvatar" style="cursor: pointer; overflow: hidden; background-size: cover; background-position: center;" onclick="document.getElementById('picUpload').click()" title="Click to upload profile picture">S</div>
                     <input type="file" id="picUpload" style="display: none;" accept="image/*">
                     <div class="info" style="flex: 1;">
-                        <div class="name">Student User</div>
-                        <div style="font-size: 11px; color: var(--primary);">Level 12 Trader</div>
+                        <div class="name" id="sidebarName">Loading...</div>
+                        <div style="font-size: 11px; color: var(--primary);" id="sidebarLevel">Loading...</div>
                     </div>
                 </div>
                 <div style="width: 100%;">
-                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span>XP: 2450/3000</span></div>
-                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div style="background: var(--primary); width: 80%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
+                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span id="sidebarXP">XP: ...</span></div>
+                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div id="sidebarXPBar" style="background: var(--primary); width: 0%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
                 </div>
                 <div style="display: flex; gap: 5px; margin-top: 5px;">
                     <span title="Risk Manager" style="font-size: 14px; color: #00bfff;"><i class="fa-solid fa-shield-halved"></i></span>
@@ -73,14 +73,14 @@
                 <li><a href="student-affiliate.html"><i class="fa-solid fa-handshake"></i> Affiliate Program</a></li>
                 <li><a href="#support" onclick="alert('Opening Support Ticket System...')"><i class="fa-solid fa-headset"></i> Support Tickets</a></li>
                 <li style="margin-top: auto; padding-top: 20px;"><button id="themeToggle" class="theme-toggle" style="width: 100%; border-radius: 10px; margin-bottom: 10px;"><i class="fa-solid fa-moon"></i> Toggle Theme</button></li>
-                <li><a href="index.html" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                <li><a href="#" onclick="if(window.logoutUser) window.logoutUser();" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             </ul>
         </aside>
 
         <main class="main-content">
             <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
                 <div>
-                    <h1 style="font-size: 28px;">Welcome back, Student! 👋</h1>
+                    <h1 style="font-size: 28px;">Welcome back, <span id="headerName">Student</span>! 👋</h1>
                     <p style="color: var(--text-muted);">Markets are volatile today. Stay focused!</p>
                 </div>
                 <div class="session-timers">
@@ -98,7 +98,7 @@
                     </div>
                     <div>
                         <h4 style="color: var(--text-muted); font-size: 14px; font-weight: 500;">Learning Streak</h4>
-                        <div style="font-size: 24px; font-weight: 600;">5 Days</div>
+                        <div id="statStreak" style="font-size: 24px; font-weight: 600;">...</div>
                     </div>
                 </div>
                 <div class="stat-card">
@@ -107,7 +107,7 @@
                     </div>
                     <div>
                         <h4 style="color: var(--text-muted); font-size: 14px; font-weight: 500;">Lessons Completed</h4>
-                        <div style="font-size: 24px; font-weight: 600;">12 / 50</div>
+                        <div id="statLessons" style="font-size: 24px; font-weight: 600;">...</div>
                     </div>
                 </div>
                 <div class="stat-card">
@@ -116,7 +116,7 @@
                     </div>
                     <div>
                         <h4 style="color: var(--text-muted); font-size: 14px; font-weight: 500;">Active Signals</h4>
-                        <div style="font-size: 24px; font-weight: 600;">3 Trades Open</div>
+                        <div id="statSignals" style="font-size: 24px; font-weight: 600;">...</div>
                     </div>
                 </div>
             </div>
@@ -181,35 +181,8 @@
                         <div style="padding: 15px 20px; background: rgba(255,200,0,0.1); border-bottom: 1px solid var(--border);">
                             <h3 style="margin: 0; font-size: 16px; color: #ffc800;"><i class="fa-solid fa-trophy"></i> Top Traders (This Week)</h3>
                         </div>
-                        <div class="leaderboard-item">
-                            <div style="display: flex; align-items: center; gap: 15px;">
-                                <div class="rank-badge rank-1">1</div>
-                                <div>
-                                    <div style="font-weight: 600; font-size: 14px;">Kamal P.</div>
-                                    <div style="font-size: 11px; color: var(--primary);">Level 15</div>
-                                </div>
-                            </div>
-                            <div style="font-weight: bold; color: var(--primary);">4,200 XP</div>
-                        </div>
-                        <div class="leaderboard-item">
-                            <div style="display: flex; align-items: center; gap: 15px;">
-                                <div class="rank-badge rank-2">2</div>
-                                <div>
-                                    <div style="font-weight: 600; font-size: 14px;">Student User</div>
-                                    <div style="font-size: 11px; color: var(--primary);">Level 12</div>
-                                </div>
-                            </div>
-                            <div style="font-weight: bold; color: var(--primary);">3,850 XP</div>
-                        </div>
-                        <div class="leaderboard-item">
-                            <div style="display: flex; align-items: center; gap: 15px;">
-                                <div class="rank-badge rank-3">3</div>
-                                <div>
-                                    <div style="font-weight: 600; font-size: 14px;">Nimali S.</div>
-                                    <div style="font-size: 11px; color: var(--primary);">Level 10</div>
-                                </div>
-                            </div>
-                            <div style="font-weight: bold; color: var(--primary);">2,100 XP</div>
+                        <div id="leaderboardContainer">
+                            <div style="padding: 15px; text-align: center; color: var(--text-muted);">Loading leaderboard...</div>
                         </div>
                     </div>
 
@@ -254,17 +227,94 @@
 
     <script src="js/script.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
     <script src="js/firebase-compat.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check auth state
+            window.auth.onAuthStateChanged(async (user) => {
+                if (user) {
+                    // User is signed in.
+                    const profile = await window.getCurrentUserProfile(user.uid);
+                    if (profile) {
+                        // Populate Profile
+                        document.getElementById('sidebarName').textContent = profile.name || user.email;
+                        document.getElementById('headerName').textContent = (profile.name || user.email).split(' ')[0];
+                        document.getElementById('sidebarLevel').textContent = profile.level || 'Beginner';
+                        
+                        const xp = profile.xp || 0;
+                        document.getElementById('sidebarXP').textContent = `XP: ${xp}`;
+                        document.getElementById('sidebarXPBar').style.width = Math.min((xp / 5000) * 100, 100) + '%'; // Assuming max 5000 for bar
+
+                        const avatarEl = document.getElementById('profileAvatar');
+                        if (profile.profilePictureUrl) {
+                            avatarEl.innerHTML = '';
+                            avatarEl.style.backgroundImage = `url(${profile.profilePictureUrl})`;
+                        } else {
+                            avatarEl.innerHTML = (profile.name || user.email).charAt(0).toUpperCase();
+                        }
+
+                        // Populate Stats
+                        document.getElementById('statStreak').textContent = (profile.learningStreak || 0) + ' Days';
+                        document.getElementById('statLessons').textContent = (profile.lessonsCompleted || 0) + ' / ' + (profile.totalLessons || 50);
+                        document.getElementById('statSignals').textContent = (profile.activeSignals || 0) + ' Trades Open';
+
+                        // Load Leaderboard
+                        loadLeaderboard();
+                    } else {
+                        // Profile missing in db, maybe handle it or use default email
+                        document.getElementById('sidebarName').textContent = user.email;
+                    }
+                } else {
+                    // No user is signed in.
+                    window.location.href = 'login.html';
+                }
+            });
+        });
+
+        async function loadLeaderboard() {
+            try {
+                const snapshot = await window.db.collection('users').where('role', '==', 'student').orderBy('xp', 'desc').limit(5).get();
+                const container = document.getElementById('leaderboardContainer');
+                container.innerHTML = '';
+                
+                let rank = 1;
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const rankClass = rank <= 3 ? `rank-${rank}` : 'rank-badge';
+                    container.innerHTML += `
+                        <div class="leaderboard-item">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div class="rank-badge ${rankClass}">${rank}</div>
+                                <div>
+                                    <div style="font-weight: 600; font-size: 14px;">${data.name || 'User'}</div>
+                                    <div style="font-size: 11px; color: var(--primary);">${data.level || 'Beginner'}</div>
+                                </div>
+                            </div>
+                            <div style="font-weight: bold; color: var(--primary);">${data.xp || 0} XP</div>
+                        </div>
+                    `;
+                    rank++;
+                });
+            } catch(e) {
+                console.error("Error loading leaderboard:", e);
+            }
+        }
+
+        document.getElementById('picUpload').addEventListener('change', async (e) => {
             const file = e.target.files[0];
             if(!file) return;
+
+            const currentUser = window.auth.currentUser;
+            if(!currentUser) return;
 
             const formData = new FormData();
             formData.append('file', file);
             formData.append('upload_preset', 'rvwebpicupload');
 
             const avatarEl = document.getElementById('profileAvatar');
+            const oldHtml = avatarEl.innerHTML;
             avatarEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="font-size: 14px;"></i>';
 
             try {
@@ -279,7 +329,7 @@
                     
                     // Save to Firestore
                     try {
-                        const userRef = window.db.collection("users").doc("student_mock_id"); // Replace with actual user ID from Auth
+                        const userRef = window.db.collection("users").doc(currentUser.uid); 
                         await userRef.update({
                             profilePictureUrl: data.secure_url
                         });
@@ -289,12 +339,12 @@
                         alert('Picture uploaded, but failed to save to database.');
                     }
                 } else {
-                    avatarEl.innerHTML = 'S';
+                    avatarEl.innerHTML = oldHtml;
                     alert('Upload failed!');
                 }
             } catch(error) {
                 console.error("Upload Error:", error);
-                avatarEl.innerHTML = 'S';
+                avatarEl.innerHTML = oldHtml;
                 alert('An error occurred during upload.');
             }
         });
