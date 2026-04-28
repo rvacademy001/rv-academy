@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | RV ACADEMY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Announcement Banner -->
+    <div class="announcement-banner">
+        <i class="fa-solid fa-bullhorn"></i> විශේෂ නිවේදනය: හෙට රාත්‍රී 8.00 ට විශේෂ Live Meeting එකක් පවත්වනවා. අනිවාර්යයෙන්ම සම්බන්ධ වන්න!
+    </div>
+
+    <!-- TradingView Ticker Tape -->
+    <div style="position: fixed; top: 43px; left: 0; width: 100%; z-index: 1000; border-bottom: 1px solid var(--border);">
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+            "symbols": [
+                { "proName": "BINANCE:BTCUSDT", "title": "BTC/USDT" },
+                { "proName": "BINANCE:ETHUSDT", "title": "ETH/USDT" },
+                { "proName": "OANDA:XAUUSD", "title": "Gold" },
+                { "proName": "OANDA:EURUSD", "title": "EUR/USD" },
+                { "proName": "OANDA:GBPUSD", "title": "GBP/USD" }
+            ],
+            "showSymbolLogo": true,
+            "isTransparent": false,
+            "displayMode": "adaptive",
+            "colorTheme": "dark",
+            "locale": "en"
+            }
+            </script>
+        </div>
+    </div>
+
+    <div class="dashboard-layout" style="margin-top: 89px;">
+        <aside class="sidebar">
+            <div class="logo" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-chart-line"></i> RV <span>ACADEMY</span>
+            </div>
+            
+            <!-- Gamified Profile Widget -->
+            <div class="profile-widget" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <div style="display: flex; gap: 15px; align-items: center; width: 100%;">
+                    <div class="avatar" id="profileAvatar" style="cursor: pointer; overflow: hidden; background-size: cover; background-position: center;" onclick="document.getElementById('picUpload').click()" title="Click to upload profile picture">S</div>
+                    <input type="file" id="picUpload" style="display: none;" accept="image/*">
+                    <div class="info" style="flex: 1;">
+                        <div class="name">Student User</div>
+                        <div style="font-size: 11px; color: var(--primary);">Level 12 Trader</div>
+                    </div>
+                </div>
+                <div style="width: 100%;">
+                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span>XP: 2450/3000</span></div>
+                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div style="background: var(--primary); width: 80%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
+                </div>
+                <div style="display: flex; gap: 5px; margin-top: 5px;">
+                    <span title="Risk Manager" style="font-size: 14px; color: #00bfff;"><i class="fa-solid fa-shield-halved"></i></span>
+                    <span title="Gold King" style="font-size: 14px; color: #ffc800;"><i class="fa-solid fa-crown"></i></span>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="student-dashboard.html" class="active"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li><a href="student-courses.html"><i class="fa-solid fa-play"></i> My Courses</a></li>
+                <li><a href="student-live.html"><i class="fa-solid fa-video"></i> Live Sessions</a></li>
+                <li><a href="https://t.me/+XcYHCpSL5og5YTJl" target="_blank"><i class="fa-brands fa-telegram"></i> VIP Telegram Group</a></li>
+                <li><a href="student-community.html"><i class="fa-solid fa-users"></i> Community</a></li>
+                <li><a href="student-tools.html"><i class="fa-solid fa-toolbox"></i> Trading Tools</a></li>
+                <li><a href="student-affiliate.html"><i class="fa-solid fa-handshake"></i> Affiliate Program</a></li>
+                <li><a href="#support" onclick="alert('Opening Support Ticket System...')"><i class="fa-solid fa-headset"></i> Support Tickets</a></li>
+                <li style="margin-top: auto; padding-top: 20px;"><button id="themeToggle" class="theme-toggle" style="width: 100%; border-radius: 10px; margin-bottom: 10px;"><i class="fa-solid fa-moon"></i> Toggle Theme</button></li>
+                <li><a href="index.html" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+                <div>
+                    <h1 style="font-size: 28px;">Welcome back, Student! 👋</h1>
+                    <p style="color: var(--text-muted);">Markets are volatile today. Stay focused!</p>
+                </div>
+                <div class="session-timers">
+                    <div class="session-clock"><span>New York</span><strong id="nyTime">--:-- h</strong></div>
+                    <div class="session-clock"><span>London</span><strong id="lonTime">--:-- h</strong></div>
+                    <div class="session-clock"><span>Tokyo</span><strong id="tokTime">--:-- h</strong></div>
+                </div>
+                <button class="btn btn-primary"><i class="fa-brands fa-telegram"></i> VIP Telegram Group</button>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #ffc800; background: rgba(255, 200, 0, 0.1);">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text-muted); font-size: 14px; font-weight: 500;">Learning Streak</h4>
+                        <div style="font-size: 24px; font-weight: 600;">5 Days</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-check-double"></i>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text-muted); font-size: 14px; font-weight: 500;">Lessons Completed</h4>
+                        <div style="font-size: 24px; font-weight: 600;">12 / 50</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #00bfff; background: rgba(0, 191, 255, 0.1);">
+                        <i class="fa-solid fa-crosshairs"></i>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text-muted); font-size: 14px; font-weight: 500;">Active Signals</h4>
+                        <div style="font-size: 24px; font-weight: 600;">3 Trades Open</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
+                <!-- Main Activity Area -->
+                <div>
+                    <h3 style="margin-bottom: 20px;">Market Overview</h3>
+                    <div class="tv-widget-wrapper" style="height: 400px; margin-bottom: 30px;">
+                        <div class="tradingview-widget-container" style="height: 100%; width: 100%;">
+                            <div class="tradingview-widget-container__widget" style="height: 100%; width: 100%;"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                            {
+                            "symbol": "BINANCE:BTCUSDT",
+                            "width": "100%",
+                            "height": "100%",
+                            "locale": "en",
+                            "dateRange": "1D",
+                            "colorTheme": "dark",
+                            "isTransparent": true,
+                            "autosize": true,
+                            "largeChartUrl": ""
+                            }
+                            </script>
+                        </div>
+                    </div>
+
+                    <!-- Guided Roadmap (Visual Learning Path) -->
+                    <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-map-location-dot" style="color: var(--primary);"></i> Your Learning Roadmap</h3>
+                    <div class="content-card">
+                        <div class="roadmap-container">
+                            <div class="roadmap-item">
+                                <div class="roadmap-dot"><i class="fa-solid fa-check"></i></div>
+                                <div class="roadmap-content" style="border-color: var(--primary);">
+                                    <h4>Module 1: Trading Fundamentals</h4>
+                                    <p style="font-size: 13px; color: var(--text-muted);">Completed • 100% Score</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-dot"><i class="fa-solid fa-play" style="font-size: 12px; margin-left: 2px;"></i></div>
+                                <div class="roadmap-content" style="box-shadow: 0 0 15px rgba(0,255,136,0.1);">
+                                    <h4 style="color: var(--primary);">Module 2: Technical Analysis (Current)</h4>
+                                    <p style="font-size: 13px; color: var(--text-muted);">Learn about candlesticks, support & resistance.</p>
+                                    <button class="btn btn-primary" style="padding: 5px 15px; font-size: 12px; margin-top: 10px;">Resume</button>
+                                </div>
+                            </div>
+                            <div class="roadmap-item locked">
+                                <div class="roadmap-dot"><i class="fa-solid fa-lock"></i></div>
+                                <div class="roadmap-content">
+                                    <h4>Module 3: Advanced Strategies</h4>
+                                    <p style="font-size: 13px; color: var(--text-muted);">Complete Module 2 to unlock.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leaderboard & Up Next Area -->
+                <div>
+                    <!-- Top Traders Leaderboard -->
+                    <div class="content-card" style="padding: 0; overflow: hidden; margin-bottom: 30px; border-color: #ffc800;">
+                        <div style="padding: 15px 20px; background: rgba(255,200,0,0.1); border-bottom: 1px solid var(--border);">
+                            <h3 style="margin: 0; font-size: 16px; color: #ffc800;"><i class="fa-solid fa-trophy"></i> Top Traders (This Week)</h3>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div class="rank-badge rank-1">1</div>
+                                <div>
+                                    <div style="font-weight: 600; font-size: 14px;">Kamal P.</div>
+                                    <div style="font-size: 11px; color: var(--primary);">Level 15</div>
+                                </div>
+                            </div>
+                            <div style="font-weight: bold; color: var(--primary);">4,200 XP</div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div class="rank-badge rank-2">2</div>
+                                <div>
+                                    <div style="font-weight: 600; font-size: 14px;">Student User</div>
+                                    <div style="font-size: 11px; color: var(--primary);">Level 12</div>
+                                </div>
+                            </div>
+                            <div style="font-weight: bold; color: var(--primary);">3,850 XP</div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div class="rank-badge rank-3">3</div>
+                                <div>
+                                    <div style="font-weight: 600; font-size: 14px;">Nimali S.</div>
+                                    <div style="font-size: 11px; color: var(--primary);">Level 10</div>
+                                </div>
+                            </div>
+                            <div style="font-weight: bold; color: var(--primary);">2,100 XP</div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-bottom: 20px;">Continue Learning</h3>
+                    <div class="content-card" style="padding: 0; overflow: hidden;">
+                        <div style="padding: 20px; border-bottom: 1px solid var(--border); background: linear-gradient(to right, rgba(0,255,136,0.1), transparent);">
+                            <div style="font-size: 12px; color: var(--primary); margin-bottom: 5px; font-weight: 600;">MODULE 2 • PLAYING NOW</div>
+                            <h4 style="margin-bottom: 10px;">Candlestick Reversal Patterns</h4>
+                            <div style="background: rgba(255,255,255,0.1); height: 6px; border-radius: 3px; overflow: hidden;">
+                                <div style="background: var(--primary); width: 45%; height: 100%;"></div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); margin-top: 5px;">
+                                <span>45% Completed</span>
+                                <span>12:30 left</span>
+                            </div>
+                            <a href="student-courses.html" class="btn btn-primary" style="width: 100%; margin-top: 15px; padding: 10px;"><i class="fa-solid fa-play"></i> Resume Video</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/94765450055" target="_blank" class="whatsapp-float">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Terms of Service Modal -->
+    <div class="modal-overlay" id="tosModal">
+        <div class="modal-content">
+            <h2 style="margin-bottom: 15px; color: var(--primary);">Terms of Service & Agreement</h2>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px; max-height: 200px; overflow-y: auto;">
+                RV Academy වෙත සාදරයෙන් පිළිගනිමු! මෙහි ඇති වීඩියෝ, ලිපි සහ උපාය මාර්ග (strategies) අනවසරයෙන් කොපි කිරීම, බෙදා හැරීම හෝ විකිණීම සපුරා තහනම් වේ. ඔබේ ගිණුම තවත් අයෙකුට ලබා දීමෙන් ඔබේ ගිණුම ස්ථිරවම අත්හිටුවනු ඇත.
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: flex-end;">
+                <button class="btn btn-outline" onclick="window.location.href='login.html'">Decline</button>
+                <button class="btn btn-primary" id="acceptTosBtn">I Agree</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script type="module">
+        import { db } from './js/firebase-config.js';
+        import { doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        document.getElementById('picUpload').addEventListener('change', async function(e) {
+            const file = e.target.files[0];
+            if(!file) return;
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', 'rvwebpicupload');
+
+            const avatarEl = document.getElementById('profileAvatar');
+            avatarEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="font-size: 14px;"></i>';
+
+            try {
+                const res = await fetch('https://api.cloudinary.com/v1_1/decwloh8b/image/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+                if(data.secure_url) {
+                    avatarEl.innerHTML = '';
+                    avatarEl.style.backgroundImage = `url(${data.secure_url})`;
+                    
+                    // Save to Firestore
+                    try {
+                        const userRef = doc(db, "users", "student_mock_id"); // Replace with actual user ID from Auth
+                        await updateDoc(userRef, {
+                            profilePictureUrl: data.secure_url
+                        });
+                        alert('Profile picture updated and saved to database successfully!');
+                    } catch (dbError) {
+                        console.error("Firestore Error:", dbError);
+                        alert('Picture uploaded, but failed to save to database.');
+                    }
+                } else {
+                    avatarEl.innerHTML = 'S';
+                    alert('Upload failed!');
+                }
+            } catch(error) {
+                console.error("Upload Error:", error);
+                avatarEl.innerHTML = 'S';
+                alert('An error occurred during upload.');
+            }
+        });
+    </script>
+</body>
+</html>

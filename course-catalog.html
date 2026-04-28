@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Catalog | RV ACADEMY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-chart-line"></i> RV <span>ACADEMY</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="course-catalog.html" class="active" style="color: var(--primary);">Courses</a>
+                <a href="blog.html">Blog</a>
+                <a href="login.html" class="btn btn-outline" style="margin-left: 10px;">Student Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding: 60px 20px;">
+        <h1 style="font-size: 42px; text-align: center; margin-bottom: 20px;" data-aos="fade-up">Our <span>Premium</span> Courses</h1>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 50px; font-size: 18px;" data-aos="fade-up" data-aos-delay="100">පහතින් ඔබට ගැලපෙන පාඨමාලාව තෝරාගන්න. සෑම පාඨමාලාවකම නොමිලේ නැරඹිය හැකි වීඩියෝ කිහිපයක් ඇත.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;" id="coursesList">
+            
+            <!-- Course 1 -->
+            <div class="content-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;" data-aos="fade-up" data-aos-delay="200">
+                <div style="height: 200px; background: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=600&auto=format&fit=crop') center/cover; position: relative;">
+                    <div style="position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.7); padding: 5px 10px; border-radius: 5px; font-size: 12px; font-weight: bold; color: var(--primary);"><i class="fa-solid fa-star"></i> Bestseller</div>
+                </div>
+                <div style="padding: 25px; flex: 1; display: flex; flex-direction: column;">
+                    <h3 style="margin-bottom: 10px;">Professional Masterclass in Trading</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">මුල සිට සරලව Forex සහ Crypto Trading ඉගෙන ගනිමු. Smart Money Concepts ඇතුලත් වේ.</p>
+                    <div style="margin-bottom: 20px;">
+                        <span style="font-size: 24px; font-weight: bold; color: var(--text-main);">Rs. 15,000</span>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px;">
+                        <h4 style="font-size: 13px; margin-bottom: 10px; color: var(--text-muted);">Free Preview Videos:</h4>
+                        <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; margin-bottom: 5px; cursor: pointer;" onclick="alert('Playing free preview: Introduction to Trading')">
+                            <i class="fa-solid fa-play" style="color: var(--primary);"></i> 1. Introduction to Trading
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer;" onclick="alert('Playing free preview: Broker Setup')">
+                            <i class="fa-solid fa-play" style="color: var(--primary);"></i> 2. Broker Setup Guide
+                        </div>
+                    </div>
+
+                    <a href="buy-course.html?id=masterclass" class="btn btn-primary" style="text-align: center; margin-top: auto;">View Details & Buy <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="content-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;" data-aos="fade-up" data-aos-delay="300">
+                <div style="height: 200px; background: url('https://images.unsplash.com/photo-1642543492481-44e81e3914a7?q=80&w=600&auto=format&fit=crop') center/cover; position: relative;">
+                </div>
+                <div style="padding: 25px; flex: 1; display: flex; flex-direction: column;">
+                    <h3 style="margin-bottom: 10px;">Advanced SMC Mentorship</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Smart Money Concepts (SMC) සහ Institutional Trading රහස් ගැන ගැඹුරු අධ්‍යනයක්.</p>
+                    <div style="margin-bottom: 20px;">
+                        <span style="font-size: 24px; font-weight: bold; color: var(--text-main);">Rs. 25,000</span>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px;">
+                        <h4 style="font-size: 13px; margin-bottom: 10px; color: var(--text-muted);">Free Preview Videos:</h4>
+                        <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; margin-bottom: 5px; cursor: pointer;" onclick="alert('Playing free preview: What is Liquidity?')">
+                            <i class="fa-solid fa-play" style="color: var(--primary);"></i> 1. What is Liquidity?
+                        </div>
+                    </div>
+
+                    <a href="buy-course.html?id=smc" class="btn btn-primary" style="text-align: center; margin-top: auto;">View Details & Buy <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/94765450055" target="_blank" class="whatsapp-float">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>

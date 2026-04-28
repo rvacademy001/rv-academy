@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Program | RV ACADEMY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="logo" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-chart-line"></i> RV <span>ACADEMY</span>
+            </div>
+            
+            <div class="profile-widget" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <div style="display: flex; gap: 15px; align-items: center; width: 100%;">
+                    <div class="avatar">S</div>
+                    <div class="info" style="flex: 1;">
+                        <div class="name">Student User</div>
+                        <div style="font-size: 11px; color: var(--primary);">Level 12 Trader</div>
+                    </div>
+                </div>
+                <div style="width: 100%;">
+                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span>XP: 2450/3000</span></div>
+                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div style="background: var(--primary); width: 80%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
+                </div>
+                <div style="display: flex; gap: 5px; margin-top: 5px;">
+                    <span title="Risk Manager" style="font-size: 14px; color: #00bfff;"><i class="fa-solid fa-shield-halved"></i></span>
+                    <span title="Gold King" style="font-size: 14px; color: #ffc800;"><i class="fa-solid fa-crown"></i></span>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="student-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li><a href="student-courses.html"><i class="fa-solid fa-play"></i> My Courses</a></li>
+                <li><a href="student-live.html"><i class="fa-solid fa-video"></i> Live Sessions</a></li>
+                <li><a href="https://t.me/+XcYHCpSL5og5YTJl" target="_blank"><i class="fa-brands fa-telegram"></i> VIP Telegram Group</a></li>
+                <li><a href="student-community.html"><i class="fa-solid fa-users"></i> Community</a></li>
+                <li><a href="student-tools.html"><i class="fa-solid fa-toolbox"></i> Trading Tools</a></li>
+                <li><a href="student-affiliate.html" class="active"><i class="fa-solid fa-handshake"></i> Affiliate Program</a></li>
+                <li style="margin-top: auto; padding-top: 50px;"><a href="index.html" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header style="margin-bottom: 30px;">
+                <h1 style="font-size: 28px;">Affiliate Dashboard <i class="fa-solid fa-sack-dollar" style="color: var(--primary);"></i></h1>
+                <p style="color: var(--text-muted);">Invite friends and earn 10% (Rs. 1,500) per enrollment.</p>
+            </header>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-bottom: 30px;">
+                <!-- Left Column -->
+                <div>
+                    <div class="content-card" style="margin-bottom: 30px;">
+                        <h3 style="margin-bottom: 15px;">Your Unique Promo/Referral Code</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 15px;">Create a custom promo code (e.g. KASUN10) to share with your friends. They get a discount, and you get a commission!</p>
+                        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                            <input type="text" class="form-control" placeholder="Enter Custom Code" value="STUDENT10">
+                            <button class="btn btn-primary" onclick="alert('Promo Code Saved!')">Save</button>
+                        </div>
+                        <div class="ref-code-box">
+                            <span id="myRefCode">STUDENT10</span>
+                            <button onclick="copyCode()"><i class="fa-regular fa-copy"></i> Copy Code</button>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid" style="margin-bottom: 0;">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-user-group"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--text-muted); font-size: 14px; font-weight: 500;">Total Referrals</h4>
+                                <div style="font-size: 24px; font-weight: 600;">5 Students</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="color: #ffc800; background: rgba(255, 200, 0, 0.1);">
+                                <i class="fa-solid fa-money-bill-trend-up"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--text-muted); font-size: 14px; font-weight: 500;">Total Earned</h4>
+                                <div style="font-size: 24px; font-weight: 600;">Rs. 7,500</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Withdraw Form -->
+                <div>
+                    <div class="content-card" style="height: 100%; border-color: var(--primary);">
+                        <h3 style="margin-bottom: 5px;">Available Balance</h3>
+                        <div style="font-size: 36px; font-weight: 700; color: var(--primary); margin-bottom: 20px;">Rs. 4,500</div>
+                        
+                        <form onsubmit="event.preventDefault(); alert('Withdrawal requested successfully! Admin will process this soon.');">
+                            <div class="form-group">
+                                <label>Withdrawal Amount (Rs)</label>
+                                <input type="number" class="form-control" value="4500" max="4500" min="1500" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Bank Name</label>
+                                <input type="text" class="form-control" placeholder="e.g. BOC, Commercial" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Account Number</label>
+                                <input type="text" class="form-control" placeholder="Enter account number" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Account Name</label>
+                                <input type="text" class="form-control" placeholder="Name on account" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Request Withdrawal</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Withdrawal History -->
+            <div class="content-card" style="padding: 0; overflow: hidden;">
+                <div style="padding: 20px 25px; border-bottom: 1px solid var(--border);">
+                    <h3 style="margin: 0;">Withdrawal History</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Bank Details</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Oct 20, 2024</td>
+                                <td>Rs. 3,000</td>
+                                <td>BOC - 123456789</td>
+                                <td><span class="status-badge success">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Oct 15, 2024</td>
+                                <td>Rs. 1,500</td>
+                                <td>BOC - 123456789</td>
+                                <td><span class="status-badge success">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Affiliate Tiers & Milestones -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px;">
+                <div class="content-card">
+                    <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-ranking-star" style="color: #ffc800;"></i> Your Affiliate Tier</h3>
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div style="font-size: 50px; color: #c0c0c0;"><i class="fa-solid fa-medal"></i></div>
+                        <h2 style="color: #c0c0c0;">Silver Affiliate</h2>
+                        <p style="color: var(--text-muted);">Current Commission: 10%</p>
+                    </div>
+                    <p style="font-size: 14px;"><strong>Next Tier: Gold (15% Commission)</strong></p>
+                    <div style="background: rgba(255,255,255,0.1); height: 8px; border-radius: 4px; margin: 10px 0;">
+                        <div style="background: #ffc800; width: 50%; height: 100%; border-radius: 4px;"></div>
+                    </div>
+                    <p style="font-size: 12px; color: var(--text-muted); text-align: right;">5 / 10 Referrals needed</p>
+                </div>
+
+                <div class="content-card">
+                    <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-gift" style="color: var(--primary);"></i> Milestone Bonuses</h3>
+                    <div style="padding: 15px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 style="margin: 0;">10 Students Milestone</h4>
+                            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">Bonus: Rs. 2,000</p>
+                        </div>
+                        <div style="color: var(--primary); font-weight: bold;">5/10</div>
+                    </div>
+                    <div style="padding: 15px; border: 1px solid var(--border); border-radius: 10px; opacity: 0.5; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 style="margin: 0;">50 Students Milestone</h4>
+                            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">Bonus: Rs. 10,000</p>
+                        </div>
+                        <div style="font-weight: bold;"><i class="fa-solid fa-lock"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Affiliate Network Tree & News Feed -->
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 30px;">
+                <div class="content-card">
+                    <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-network-wired" style="color: var(--primary);"></i> Your Network Tree</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Visual representation of students you referred.</p>
+                    <div style="text-align: center; overflow-x: auto; padding-top: 20px;">
+                        <div style="display: inline-block; padding: 10px 20px; background: var(--primary); color: #000; font-weight: bold; border-radius: 8px; margin-bottom: 20px;">You</div>
+                        <br>
+                        <div style="display: flex; justify-content: center; gap: 20px;">
+                            <div class="tree-node">Kamal P.</div>
+                            <div class="tree-node">Nimali S.</div>
+                            <div class="tree-node">Kasun F.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3 style="margin-bottom: 20px;"><i class="fa-regular fa-newspaper"></i> Affiliate News Feed</h3>
+                    <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; border-left: 3px solid var(--primary); margin-bottom: 15px;">
+                        <h4 style="margin-bottom: 5px; font-size: 14px;">How to promote on TikTok</h4>
+                        <p style="font-size: 12px; color: var(--text-muted);">Use our new short videos in the marketing kit to get more signups!</p>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; border-left: 3px solid #ffc800;">
+                        <h4 style="margin-bottom: 5px; font-size: 14px;">Double Commission Weekend!</h4>
+                        <p style="font-size: 12px; color: var(--text-muted);">Earn 20% on all referrals this weekend only.</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        function copyCode() {
+            const code = document.getElementById('myRefCode').innerText;
+            navigator.clipboard.writeText(code);
+            alert("Referral Code Copied: " + code);
+        }
+    </script>
+</body>
+</html>

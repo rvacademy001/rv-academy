@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Sessions | RV ACADEMY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="logo" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-chart-line"></i> RV <span>ACADEMY</span>
+            </div>
+            
+            <div class="profile-widget" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <div style="display: flex; gap: 15px; align-items: center; width: 100%;">
+                    <div class="avatar">S</div>
+                    <div class="info" style="flex: 1;">
+                        <div class="name">Student User</div>
+                        <div style="font-size: 11px; color: var(--primary);">Level 12 Trader</div>
+                    </div>
+                </div>
+                <div style="width: 100%;">
+                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span>XP: 2450/3000</span></div>
+                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div style="background: var(--primary); width: 80%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
+                </div>
+                <div style="display: flex; gap: 5px; margin-top: 5px;">
+                    <span title="Risk Manager" style="font-size: 14px; color: #00bfff;"><i class="fa-solid fa-shield-halved"></i></span>
+                    <span title="Gold King" style="font-size: 14px; color: #ffc800;"><i class="fa-solid fa-crown"></i></span>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="student-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li><a href="student-courses.html"><i class="fa-solid fa-play"></i> My Courses</a></li>
+                <li><a href="student-live.html" class="active"><i class="fa-solid fa-video"></i> Live Sessions</a></li>
+                <li><a href="student-signals.html"><i class="fa-solid fa-chart-pie"></i> Signal Room</a></li>
+                <li><a href="student-community.html"><i class="fa-solid fa-users"></i> Community</a></li>
+                <li><a href="student-tools.html"><i class="fa-solid fa-toolbox"></i> Trading Tools</a></li>
+                <li><a href="student-affiliate.html"><i class="fa-solid fa-handshake"></i> Affiliate Program</a></li>
+                <li style="margin-top: auto; padding-top: 50px;"><a href="index.html" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 style="font-size: 28px;">Live Mentorship <span style="background: var(--danger); color: white; font-size: 12px; padding: 4px 8px; border-radius: 5px; vertical-align: middle; margin-left: 10px; animation: fadeIn 1s infinite alternate;"><i class="fa-solid fa-circle" style="font-size: 8px;"></i> LIVE</span></h1>
+                    <p style="color: var(--text-muted);">Weekly Q&A and Live Market Analysis</p>
+                </div>
+            </header>
+
+            <div class="live-layout">
+                <!-- Stream Area -->
+                <div>
+                    <div class="video-container" style="height: 500px;">
+                        <!-- Placeholder for YouTube Live or Zoom iframe -->
+                        <div style="text-align: center;">
+                            <i class="fa-brands fa-youtube" style="font-size: 80px; color: var(--danger); margin-bottom: 20px;"></i>
+                            <h2>Weekly Market Breakdown</h2>
+                            <p style="color: var(--text-muted); margin-top: 10px;">Waiting for instructor to start the stream...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <h3>About this session</h3>
+                        <p style="color: var(--text-muted); margin-top: 10px;">In this live session, we will review the setups given in the VIP Signal room, analyze the upcoming news events for the week, and host a Q&A session for students.</p>
+                    </div>
+                </div>
+
+                <!-- Live Chat -->
+                <div class="chat-box">
+                    <div style="padding: 15px 20px; border-bottom: 1px solid var(--border); font-weight: 600;">
+                        Live Chat <span style="font-size: 12px; color: var(--text-muted); font-weight: normal; margin-left: 10px;"><i class="fa-solid fa-user"></i> 142 watching</span>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="chat-message system">Welcome to the live chat! Please be respectful.</div>
+                        
+                        <div class="chat-message">
+                            <strong style="color: #ffc800;">Kamal:</strong> Good evening sir!
+                        </div>
+                        <div class="chat-message">
+                            <strong style="color: #00bfff;">Nimali:</strong> Waiting for the gold analysis!
+                        </div>
+                        <div class="chat-message">
+                            <strong style="color: #ff3366;">Kasun:</strong> Hello everyone
+                        </div>
+                        <div class="chat-message">
+                            <strong style="color: var(--primary);">Instructor (Admin):</strong> We will be starting in 5 minutes guys. Get your charts ready.
+                        </div>
+                        <div class="chat-message">
+                            <strong style="color: #ffc800;">Kamal:</strong> Ready! 🚀
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" class="form-control" placeholder="Type a message..." style="padding: 10px; margin-bottom: 0;">
+                        <button class="btn btn-primary" style="padding: 10px 15px;"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

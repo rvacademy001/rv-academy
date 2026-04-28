@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Courses | RV ACADEMY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="logo" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-chart-line"></i> RV <span>ACADEMY</span>
+            </div>
+            
+            <div class="profile-widget" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <div style="display: flex; gap: 15px; align-items: center; width: 100%;">
+                    <div class="avatar">S</div>
+                    <div class="info" style="flex: 1;">
+                        <div class="name">Student User</div>
+                        <div style="font-size: 11px; color: var(--primary);">Level 12 Trader</div>
+                    </div>
+                </div>
+                <div style="width: 100%;">
+                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span>XP: 2450/3000</span></div>
+                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div style="background: var(--primary); width: 80%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
+                </div>
+                <div style="display: flex; gap: 5px; margin-top: 5px;">
+                    <span title="Risk Manager" style="font-size: 14px; color: #00bfff;"><i class="fa-solid fa-shield-halved"></i></span>
+                    <span title="Gold King" style="font-size: 14px; color: #ffc800;"><i class="fa-solid fa-crown"></i></span>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="student-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li><a href="student-courses.html" class="active"><i class="fa-solid fa-play"></i> My Courses</a></li>
+                <li><a href="student-live.html"><i class="fa-solid fa-video"></i> Live Sessions</a></li>
+                <li><a href="https://t.me/+XcYHCpSL5og5YTJl" target="_blank"><i class="fa-brands fa-telegram"></i> VIP Telegram Group</a></li>
+                <li><a href="student-community.html"><i class="fa-solid fa-users"></i> Community</a></li>
+                <li><a href="student-tools.html"><i class="fa-solid fa-toolbox"></i> Trading Tools</a></li>
+                <li><a href="student-affiliate.html"><i class="fa-solid fa-handshake"></i> Affiliate Program</a></li>
+                <li style="margin-top: auto; padding-top: 50px;"><a href="index.html" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header style="margin-bottom: 30px;">
+                <h1 style="font-size: 28px;">Course Player</h1>
+            </header>
+
+            <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 30px;">
+                
+                <!-- Video Player Area -->
+                <div>
+                    <div class="video-container video-protection-wrapper" style="position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 15px; overflow: hidden; background: #000;">
+                        <!-- Transparent overlay to prevent right click / interaction -->
+                        <div class="video-overlay" style="position: absolute; inset: 0; z-index: 10; cursor: pointer;" onclick="document.querySelector('.course-video').style.pointerEvents = 'auto'; this.style.display='none';">
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: rgba(0,255,136,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 30px; box-shadow: 0 0 20px var(--primary-glow);">
+                                <i class="fa-solid fa-play" style="margin-left: 5px;"></i>
+                            </div>
+                        </div>
+                        <iframe class="course-video" src="https://www.youtube.com/embed/ScMzIvxBSi4?controls=0&modestbranding=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; pointer-events: none;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+
+                    <div class="content-card">
+                        <!-- TABS HEADER -->
+                        <div class="tabs-header" style="flex-wrap: wrap;">
+                            <button class="tab-btn active" onclick="switchTab('overview', this)">Overview</button>
+                            <button class="tab-btn" onclick="switchTab('qa', this)">Q&A (2)</button>
+                            <button class="tab-btn" onclick="switchTab('quiz', this)">Quiz</button>
+                            <button class="tab-btn" onclick="switchTab('notes', this)"><i class="fa-solid fa-pen-to-square"></i> My Notes</button>
+                        </div>
+
+                        <!-- TAB CONTENT: OVERVIEW -->
+                        <div id="overview" class="tab-content active">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <h2>Candlestick Reversal Patterns</h2>
+                                <button class="btn btn-outline" style="padding: 8px 15px;"><i class="fa-solid fa-download"></i> Resources</button>
+                            </div>
+                            <p style="color: var(--text-muted);">In this critical lesson, we dive deep into the psychology behind candlestick wicks and bodies. Learn how institutional footprints are left on the chart through specific patterns like Pinbars, Engulfing candles, and Dojis. Take notes as this forms the foundation for entry triggers.</p>
+                        </div>
+
+                        <!-- TAB CONTENT: Q&A -->
+                        <div id="qa" class="tab-content">
+                            <div style="margin-bottom: 30px;">
+                                <h4 style="margin-bottom: 10px;">Ask a Question</h4>
+                                <div style="display: flex; gap: 15px;">
+                                    <input type="text" class="form-control" placeholder="What's confusing you in this lesson?">
+                                    <button class="btn btn-primary">Post</button>
+                                </div>
+                            </div>
+
+                            <div class="qa-item">
+                                <div class="qa-question">
+                                    <div class="qa-avatar">S</div>
+                                    <div>
+                                        <div style="font-size: 14px;"><strong>Student Name</strong> <span style="color: var(--text-muted); font-size: 12px; margin-left: 10px;">2 hours ago</span></div>
+                                        <div style="margin-top: 5px; color: var(--text-main);">Sir, pinbar ekak dakkama eka valid kiyala adura ganne kohomada?</div>
+                                    </div>
+                                </div>
+                                <div class="qa-answer">
+                                    <div style="display: flex; gap: 10px; margin-bottom: 5px;">
+                                        <div class="qa-avatar admin" style="width: 25px; height: 25px; font-size: 11px;">A</div>
+                                        <strong style="font-size: 13px; color: var(--primary);">Instructor (Admin)</strong>
+                                    </div>
+                                    Always look for the pinbar at a key Support or Resistance level. Support/Resistance ekak nathuwa athara mada thiyena pinbars valid naha.
+                                </div>
+                            </div>
+
+                            <div class="qa-item">
+                                <div class="qa-question">
+                                    <div class="qa-avatar">N</div>
+                                    <div>
+                                        <div style="font-size: 14px;"><strong>Nimali</strong> <span style="color: var(--text-muted); font-size: 12px; margin-left: 10px;">Yesterday</span></div>
+                                        <div style="margin-top: 5px; color: var(--text-main);">Can engulfing candles appear in a ranging market?</div>
+                                    </div>
+                                </div>
+                                <div class="qa-answer">
+                                    <div style="display: flex; gap: 10px; margin-bottom: 5px;">
+                                        <div class="qa-avatar admin" style="width: 25px; height: 25px; font-size: 11px;">A</div>
+                                        <strong style="font-size: 13px; color: var(--primary);">Instructor (Admin)</strong>
+                                    </div>
+                                    Yes, but they are most effective when they appear at the extremes (Top or Bottom) of the range.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB CONTENT: QUIZ -->
+                        <div id="quiz" class="tab-content">
+                            <h3 style="margin-bottom: 20px;">Lesson Knowledge Check</h3>
+                            
+                            <div class="quiz-card">
+                                <h4 style="margin-bottom: 15px;">1. What does a long upper wick on a candlestick indicate?</h4>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q1"> Strong buying pressure
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q1"> Strong selling pressure
+                                </label>
+                                <label class="quiz-option">
+                                    <input type="radio" name="q1"> Market indecision
+                                </label>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="alert('Quiz Submitted! You scored 100%.')">Submit Answers</button>
+                        </div>
+
+                        <!-- TAB CONTENT: MY NOTES -->
+                        <div id="notes" class="tab-content">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <h3 style="margin: 0;">Personal Notes</h3>
+                                <button class="btn btn-primary" style="padding: 5px 15px; font-size: 14px;" onclick="alert('Notes Saved Successfully!')"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 15px;">Jot down key takeaways from this video. Only you can see this.</p>
+                            <div class="notes-container" style="min-height: 200px;">
+                                <textarea placeholder="Start typing your notes here..." style="width: 100%; min-height: 180px; font-size: 14px;"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Playlist Sidebar with Categories -->
+                <div>
+                    <div class="content-card" style="padding: 0; height: 100%; max-height: 800px; display: flex; flex-direction: column;">
+                        <div style="padding: 20px; border-bottom: 1px solid var(--border);">
+                            <h3 style="margin-bottom: 10px;">Course Modules</h3>
+                            <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); margin-bottom: 5px;">
+                                <span>Progress</span>
+                                <span>24%</span>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.1); height: 6px; border-radius: 3px; overflow: hidden;">
+                                <div style="background: var(--primary); width: 24%; height: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div style="overflow-y: auto; flex: 1;">
+                            
+                            <!-- CATEGORY: BEGINNER -->
+                            <div class="category-header">
+                                CATEGORY: BEGINNER <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <!-- Module 1 -->
+                            <div style="padding: 15px 20px; background: rgba(0,0,0,0.2); font-weight: 600; font-size: 14px; display: flex; justify-content: space-between; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <span>1. Intro to Markets</span>
+                            </div>
+                            <div style="padding: 10px 20px; display: flex; gap: 15px; align-items: center; font-size: 13px;">
+                                <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i>
+                                <span style="color: var(--text-muted);">1.1 What is Forex/Crypto</span>
+                            </div>
+                            <div style="padding: 10px 20px; display: flex; gap: 15px; align-items: center; font-size: 13px;">
+                                <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i>
+                                <span style="color: var(--text-muted);">1.2 Brokers Setup</span>
+                            </div>
+
+                            <!-- CATEGORY: INTERMEDIATE -->
+                            <div class="category-header" style="margin-top: 10px;">
+                                CATEGORY: INTERMEDIATE <i class="fa-solid fa-chevron-up"></i>
+                            </div>
+                            <!-- Module 2 -->
+                            <div style="padding: 15px 20px; background: rgba(0,0,0,0.2); font-weight: 600; font-size: 14px; display: flex; justify-content: space-between; cursor: pointer;">
+                                <span>2. Technical Analysis</span>
+                            </div>
+                            <div style="padding: 10px 20px; display: flex; gap: 15px; align-items: center; font-size: 13px; background: rgba(0,255,136,0.1); border-left: 3px solid var(--primary);">
+                                <i class="fa-solid fa-circle-play" style="color: var(--primary);"></i>
+                                <span style="color: var(--text-main); font-weight: 500;">2.1 Candlestick Patterns</span>
+                            </div>
+                            <div style="padding: 10px 20px; display: flex; gap: 15px; align-items: center; font-size: 13px;">
+                                <i class="fa-solid fa-lock" style="color: var(--text-muted);"></i>
+                                <span style="color: var(--text-muted);">2.2 Support & Resistance</span>
+                            </div>
+
+                            <!-- CATEGORY: ADVANCED -->
+                            <div class="category-header" style="margin-top: 10px;">
+                                CATEGORY: ADVANCED (Locked) <i class="fa-solid fa-lock" style="color: var(--text-muted); font-size: 12px;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/94765450055" target="_blank" class="whatsapp-float">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        function switchTab(tabId, element) {
+            // Remove active from all tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Add active to clicked tab
+            element.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

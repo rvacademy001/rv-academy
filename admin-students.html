@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Database | RV ACADEMY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="logo" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-chart-line"></i> RV <span>ADMIN</span>
+            </div>
+            
+            <div class="profile-widget" style="border-color: rgba(255,200,0,0.3);">
+                <div class="avatar" style="background: var(--secondary);">A</div>
+                <div class="info">
+                    <div class="name">Super Admin</div>
+                    <div class="badge" style="color: var(--secondary); background: rgba(255,200,0,0.1);">System Access</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="admin-dashboard.html"><i class="fa-solid fa-chart-pie"></i> Overview</a></li>
+                <li><a href="admin-students.html" class="active"><i class="fa-solid fa-users"></i> Students DB</a></li>
+                <li><a href="admin-courses.html"><i class="fa-solid fa-book"></i> Courses Manager</a></li>
+                <li><a href="admin-affiliates.html"><i class="fa-solid fa-handshake"></i> Affiliates & Payouts</a></li>
+                <li><a href="admin-gamification.html"><i class="fa-solid fa-medal"></i> Gamification</a></li>
+                <li><a href="#"><i class="fa-solid fa-wallet"></i> Sales & Revenue</a></li>
+                <li><a href="admin-announcements.html"><i class="fa-solid fa-bullhorn"></i> Announcements</a></li>
+                <li style="margin-top: auto; padding-top: 50px;"><a href="index.html" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+                <div>
+                    <h1 style="font-size: 28px;">Students Database</h1>
+                    <p style="color: var(--text-muted);">Manage users, access, and accounts.</p>
+                </div>
+            </header>
+
+            <div class="content-card">
+                <!-- Toolbar -->
+                <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                        <div style="display: flex; gap: 15px; flex: 1; max-width: 500px;">
+                            <input type="text" class="form-control" placeholder="Search by name, email..." style="padding: 10px 15px; flex: 1;">
+                            <button class="btn btn-outline" style="padding: 10px 20px;"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-primary" style="padding: 10px 20px;" onclick="document.getElementById('addUserModal').classList.add('active')"><i class="fa-solid fa-user-plus"></i> Add User</button>
+                        </div>
+                    </div>
+                    <!-- Advanced Filters -->
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px;">
+                        <span style="color: var(--text-muted); font-size: 14px; display: flex; align-items: center;"><i class="fa-solid fa-filter"></i> Advanced Filters:</span>
+                        <input type="date" class="form-control" style="width: auto; padding: 5px 10px;" title="Registration Date">
+                        <input type="text" class="form-control" style="width: auto; padding: 5px 10px;" placeholder="Referrer Code">
+                        <select class="form-control" style="width: auto; padding: 5px 10px;">
+                            <option>All Memberships</option>
+                            <option>Silver</option>
+                            <option>Gold</option>
+                            <option>Platinum</option>
+                        </select>
+                        <select class="form-control" style="width: auto; padding: 5px 10px;">
+                            <option>Status: All</option>
+                            <option>Active</option>
+                            <option>Suspended</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Student Info</th>
+                                <th>Referred By</th>
+                                <th>Progress</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--text-muted);">#RV1005</td>
+                                <td>
+                                    <div style="font-weight: 600;">Ruwan Sampath</div>
+                                    <div style="font-size: 12px; color: var(--text-muted);">ruwan@email.com</div>
+                                </td>
+                                <td>
+                                    <span class="badge" style="background: rgba(0,255,136,0.1); color: var(--primary); padding: 4px 8px; border-radius: 4px; font-size: 11px;">RV-STUDENT88</span>
+                                </td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; min-width: 80px;">
+                                            <div style="width: 5%; height: 100%; background: var(--primary); border-radius: 3px;"></div>
+                                        </div>
+                                        <span style="font-size: 12px;">5%</span>
+                                    </div>
+                                </td>
+                                <td><span class="status-badge success">Active</span></td>
+                                <td>
+                                    <div style="display: flex; gap: 5px;">
+                                        <button class="btn btn-outline" style="padding: 5px 10px; border-color: var(--text-muted); color: var(--text-muted);" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="btn btn-outline" style="padding: 5px 10px; border-color: var(--danger); color: var(--danger);" title="Suspend"><i class="fa-solid fa-ban"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--text-muted);">#RV1001</td>
+                                <td>
+                                    <div style="font-weight: 600;">Kamal Perera</div>
+                                    <div style="font-size: 12px; color: var(--text-muted);">kamal@email.com</div>
+                                </td>
+                                <td>-</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; min-width: 80px;">
+                                            <div style="width: 85%; height: 100%; background: var(--primary); border-radius: 3px;"></div>
+                                        </div>
+                                        <span style="font-size: 12px;">85%</span>
+                                    </div>
+                                </td>
+                                <td><span class="status-badge success">Active</span></td>
+                                <td>
+                                    <div style="display: flex; gap: 5px;">
+                                        <button class="btn btn-outline" style="padding: 5px 10px; border-color: var(--primary); color: var(--primary);" title="View Detailed Tracking" onclick="document.getElementById('trackingModal').classList.add('active')"><i class="fa-solid fa-eye"></i></button>
+                                        <button class="btn btn-outline" style="padding: 5px 10px; border-color: var(--text-muted); color: var(--text-muted);" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="btn btn-outline" style="padding: 5px 10px; border-color: var(--danger); color: var(--danger);" title="Suspend"><i class="fa-solid fa-ban"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal-overlay" id="addUserModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Student</h2>
+                <button class="modal-close" onclick="document.getElementById('addUserModal').classList.remove('active')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <form onsubmit="event.preventDefault(); alert('User Added Successfully! If a referral code was used, the referrer received Rs. 1,500.'); document.getElementById('addUserModal').classList.remove('active');">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" placeholder="e.g. Ruwan Sampath" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" class="form-control" placeholder="e.g. ruwan@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="text" class="form-control" value="RV123456" required>
+                </div>
+                
+                <div class="form-group" style="background: rgba(0,255,136,0.05); padding: 15px; border-radius: 10px; border: 1px dashed var(--primary);">
+                    <label style="color: var(--primary); font-weight: 600;"><i class="fa-solid fa-handshake"></i> Referral Code (Optional)</label>
+                    <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 10px;">If this student was referred by someone, enter their code here. They will earn 10% commission.</p>
+                    <input type="text" class="form-control" placeholder="e.g. RV-STUDENT88" style="border-color: var(--primary);">
+                </div>
+
+                <div style="display: flex; gap: 15px; margin-top: 30px;">
+                    <button type="button" class="btn btn-outline" style="flex: 1;" onclick="document.getElementById('addUserModal').classList.remove('active')">Cancel</button>
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Create Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Detailed Tracking Modal -->
+    <div class="modal-overlay" id="trackingModal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2>Student Tracking & Profile</h2>
+                <button class="modal-close" onclick="document.getElementById('trackingModal').classList.remove('active')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border);">
+                <div class="profile-avatar-large" style="margin: 0; width: 80px; height: 80px; font-size: 30px;">K</div>
+                <div>
+                    <h3 style="margin-bottom: 5px;">Kamal Perera</h3>
+                    <p style="color: var(--text-muted); font-size: 14px;">kamal@email.com | Joined: Oct 24, 2024</p>
+                    <span class="badge" style="background: #ffc800; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 11px; margin-top: 5px; display: inline-block;">Gold Membership</span>
+                </div>
+            </div>
+
+            <h4 style="margin-bottom: 15px;"><i class="fa-solid fa-clock-rotate-left"></i> Watch History & Activity</h4>
+            <div style="background: rgba(0,0,0,0.2); border-radius: 10px; padding: 15px; max-height: 250px; overflow-y: auto;">
+                <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <strong style="color: var(--primary);">Module 2: Technical Analysis</strong>
+                        <span style="font-size: 12px; color: var(--text-muted);">Today, 14:30 PM</span>
+                    </div>
+                    <p style="font-size: 13px; color: var(--text-muted);">Watched 45 mins / 1 hour total. (Completed)</p>
+                </div>
+                <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <strong style="color: var(--text-main);">Logged Trade in Journal</strong>
+                        <span style="font-size: 12px; color: var(--text-muted);">Yesterday, 10:15 AM</span>
+                    </div>
+                    <p style="font-size: 13px; color: var(--text-muted);">Pair: XAUUSD | PnL: +$45.00</p>
+                </div>
+                <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <strong style="color: var(--primary);">Module 1: Fundamentals</strong>
+                        <span style="font-size: 12px; color: var(--text-muted);">Oct 25, 2024</span>
+                    </div>
+                    <p style="font-size: 13px; color: var(--text-muted);">Watched 100%. Downloaded Checklist.</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                <button class="btn btn-outline" onclick="document.getElementById('trackingModal').classList.remove('active')">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

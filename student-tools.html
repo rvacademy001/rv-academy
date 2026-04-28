@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Tools | RV ACADEMY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="logo" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-chart-line"></i> RV <span>ACADEMY</span>
+            </div>
+            
+            <div class="profile-widget" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <div style="display: flex; gap: 15px; align-items: center; width: 100%;">
+                    <div class="avatar">S</div>
+                    <div class="info" style="flex: 1;">
+                        <div class="name">Student User</div>
+                        <div style="font-size: 11px; color: var(--primary);">Level 12 Trader</div>
+                    </div>
+                </div>
+                <div style="width: 100%;">
+                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span>XP: 2450/3000</span></div>
+                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div style="background: var(--primary); width: 80%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
+                </div>
+                <div style="display: flex; gap: 5px; margin-top: 5px;">
+                    <span title="Risk Manager" style="font-size: 14px; color: #00bfff;"><i class="fa-solid fa-shield-halved"></i></span>
+                    <span title="Gold King" style="font-size: 14px; color: #ffc800;"><i class="fa-solid fa-crown"></i></span>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="student-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li><a href="student-courses.html"><i class="fa-solid fa-play"></i> My Courses</a></li>
+                <li><a href="student-live.html"><i class="fa-solid fa-video"></i> Live Sessions</a></li>
+                <li><a href="https://t.me/+XcYHCpSL5og5YTJl" target="_blank"><i class="fa-brands fa-telegram"></i> VIP Telegram Group</a></li>
+                <li><a href="student-community.html"><i class="fa-solid fa-users"></i> Community</a></li>
+                <li><a href="student-tools.html" class="active"><i class="fa-solid fa-toolbox"></i> Trading Tools</a></li>
+                <li><a href="student-affiliate.html"><i class="fa-solid fa-handshake"></i> Affiliate Program</a></li>
+                <li style="margin-top: auto; padding-top: 50px;"><a href="index.html" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header style="margin-bottom: 30px;">
+                <h1 style="font-size: 28px;">Trading Tools</h1>
+                <p style="color: var(--text-muted);">Manage your risk, log your trades, and test strategies.</p>
+            </header>
+
+            <div class="tabs-header" style="margin-bottom: 30px; flex-wrap: wrap; gap: 10px;">
+                <button class="tab-btn active" onclick="switchTab('riskcalc', this)">Risk Calculator</button>
+                <button class="tab-btn" onclick="switchTab('journal', this)">Trading Journal</button>
+                <button class="tab-btn" onclick="switchTab('simulator', this)">Strategy Simulator</button>
+                <button class="tab-btn" onclick="switchTab('heatmap', this)">Economic Heatmap</button>
+                <button class="tab-btn" onclick="switchTab('checklists', this)">Checklists</button>
+                <button class="tab-btn" onclick="switchTab('flashcards', this)">Flashcards</button>
+                <button class="tab-btn" onclick="switchTab('sentiment', this)">Sentiment Index</button>
+            </div>
+
+            <!-- Risk Calculator Tab -->
+            <div id="riskcalc" class="tab-content active">
+                <div class="tool-card" style="max-width: 500px; margin: 0 auto;">
+                    <h3 style="margin-bottom: 20px; text-align: center;"><i class="fa-solid fa-calculator" style="color: var(--primary);"></i> Lot Size Calculator</h3>
+                    <div class="form-group">
+                        <label>Account Balance ($)</label>
+                        <input type="number" class="form-control" placeholder="1000">
+                    </div>
+                    <div class="form-group">
+                        <label>Risk Percentage (%)</label>
+                        <input type="number" class="form-control" placeholder="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Stop Loss (Pips)</label>
+                        <input type="number" class="form-control" placeholder="20">
+                    </div>
+                    <div class="form-group">
+                        <label>Currency Pair</label>
+                        <select class="form-control">
+                            <option>EUR/USD</option>
+                            <option>GBP/USD</option>
+                            <option>XAU/USD (Gold)</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="document.getElementById('calcResult').style.display='block'">Calculate Lot Size</button>
+                    
+                    <div id="calcResult" style="display: none; margin-top: 20px; text-align: center; padding: 15px; background: rgba(0,255,136,0.1); border: 1px dashed var(--primary); border-radius: 10px;">
+                        <div style="font-size: 14px; color: var(--text-muted);">Recommended Lot Size</div>
+                        <div style="font-size: 32px; font-weight: 700; color: var(--primary);">0.05 Lots</div>
+                        <div style="font-size: 12px; color: var(--danger); margin-top: 5px;">Risking: $10.00</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trading Journal Tab -->
+            <div id="journal" class="tab-content">
+                <div class="tool-card" style="padding: 0; overflow: hidden;">
+                    <div style="padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border);">
+                        <h3 style="margin: 0;"><i class="fa-solid fa-book-open"></i> My Trade Log</h3>
+                        <button class="btn btn-primary" style="padding: 8px 15px; font-size: 14px;">+ Add Trade</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table journal-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Pair</th>
+                                    <th>Type</th>
+                                    <th>Entry</th>
+                                    <th>Exit</th>
+                                    <th>P/L</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Oct 27, 10:30</td>
+                                    <td>XAUUSD</td>
+                                    <td><span style="color: var(--primary);">BUY</span></td>
+                                    <td>2020.50</td>
+                                    <td>2025.00</td>
+                                    <td style="color: var(--primary); font-weight: bold;">+$45.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Oct 26, 14:15</td>
+                                    <td>EURUSD</td>
+                                    <td><span style="color: var(--danger);">SELL</span></td>
+                                    <td>1.0850</td>
+                                    <td>1.0870</td>
+                                    <td style="color: var(--danger); font-weight: bold;">-$20.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulator Tab -->
+            <div id="simulator" class="tab-content">
+                <div class="tool-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3 style="margin: 0;"><i class="fa-solid fa-gamepad"></i> Candlestick Simulator</h3>
+                        <div>
+                            <button class="btn btn-outline" style="padding: 5px 15px; border-color: var(--danger); color: var(--danger);">Sell</button>
+                            <button class="btn btn-outline" style="padding: 5px 15px; border-color: var(--primary); color: var(--primary);">Buy</button>
+                            <button class="btn btn-primary" style="padding: 5px 15px; margin-left: 15px;">Next Candle <i class="fa-solid fa-forward-step"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="backtester-chart">
+                        <p style="color: var(--text-muted); position: absolute; top: 20px; left: 20px;">Mock Chart Simulator Active</p>
+                        <!-- Mock candles -->
+                        <div class="mock-candle" style="height: 40px; left: 100px; bottom: 150px; background: var(--danger);"></div>
+                        <div class="mock-candle" style="height: 60px; left: 120px; bottom: 130px; background: var(--danger);"></div>
+                        <div class="mock-candle" style="height: 30px; left: 140px; bottom: 130px; background: var(--primary);"></div>
+                        <div class="mock-candle" style="height: 80px; left: 160px; bottom: 160px; background: var(--primary);"></div>
+                        
+                        <div style="position: absolute; right: 20px; bottom: 20px; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px; font-family: monospace;">
+                            PnL: <span style="color: var(--primary);">+$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Heatmap Tab -->
+            <div id="heatmap" class="tab-content">
+                <div class="tool-card">
+                    <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-fire-flame-curved" style="color: var(--danger);"></i> Global Economic Heatmap</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Red indicates negative impact, Green indicates positive impact.</p>
+                    <div class="heatmap-grid">
+                        <div class="heatmap-box green-high">USD<span>+1.2%</span></div>
+                        <div class="heatmap-box red-low">EUR<span>-0.4%</span></div>
+                        <div class="heatmap-box red-high">GBP<span>-1.5%</span></div>
+                        <div class="heatmap-box green-low">JPY<span>+0.3%</span></div>
+                        <div class="heatmap-box neutral">AUD<span>0.0%</span></div>
+                        <div class="heatmap-box green-high">CAD<span>+0.9%</span></div>
+                        <div class="heatmap-box red-low">CHF<span>-0.2%</span></div>
+                        <div class="heatmap-box neutral">NZD<span>+0.1%</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checklists Tab -->
+            <div id="checklists" class="tab-content">
+                <div class="tool-card">
+                    <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-list-check" style="color: var(--primary);"></i> Pre-Trade Checklists</h3>
+                    <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                        <h4 style="margin-bottom: 15px; color: var(--secondary);">Smart Money Entry Checklist</h4>
+                        <label class="checklist-item"><input type="checkbox"> <span>Is the higher timeframe trend aligned?</span></label>
+                        <label class="checklist-item"><input type="checkbox"> <span>Did price sweep liquidity?</span></label>
+                        <label class="checklist-item"><input type="checkbox"> <span>Is there a clear break of structure (BOS)?</span></label>
+                        <label class="checklist-item"><input type="checkbox"> <span>Is price mitigating a valid order block?</span></label>
+                        <label class="checklist-item"><input type="checkbox"> <span>Is the risk/reward ratio at least 1:2?</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flashcards Tab -->
+            <div id="flashcards" class="tab-content">
+                <div class="tool-card">
+                    <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-clone" style="color: var(--primary);"></i> Candlestick Flashcards</h3>
+                    <div class="flashcard-grid">
+                        <div class="flashcard">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div style="font-size: 50px; color: var(--primary); margin-bottom: 10px;"><i class="fa-solid fa-arrow-up-long"></i></div>
+                                    <h4>Bullish Engulfing</h4>
+                                </div>
+                                <div class="flashcard-back">
+                                    <p style="font-size: 14px;">A strong reversal pattern where a large bullish candle completely covers the previous smaller bearish candle.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flashcard">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div style="font-size: 50px; color: var(--danger); margin-bottom: 10px;"><i class="fa-solid fa-hammer"></i></div>
+                                    <h4>Shooting Star</h4>
+                                </div>
+                                <div class="flashcard-back">
+                                    <p style="font-size: 14px;">A bearish reversal candle with a long upper shadow, found at the top of an uptrend.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flashcard">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <div style="font-size: 50px; color: var(--text-muted); margin-bottom: 10px;"><i class="fa-solid fa-plus"></i></div>
+                                    <h4>Doji</h4>
+                                </div>
+                                <div class="flashcard-back">
+                                    <p style="font-size: 14px;">Indicates indecision in the market. Open and close prices are nearly identical.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sentiment Index Tab -->
+            <div id="sentiment" class="tab-content">
+                <div class="tool-card text-center" style="text-align: center;">
+                    <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-users-viewfinder" style="color: var(--primary);"></i> Academy Sentiment Meter</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 30px;">What are most students trading right now?</p>
+                    
+                    <h2 style="font-size: 30px; margin-bottom: 10px;">XAU/USD (Gold)</h2>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 5px;">
+                        <span style="color: var(--primary);">BUY (75%)</span>
+                        <span style="color: var(--danger);">SELL (25%)</span>
+                    </div>
+                    <div class="sentiment-bar">
+                        <div class="sentiment-buy" style="width: 75%;">75%</div>
+                    </div>
+                    
+                    <h2 style="font-size: 30px; margin-top: 40px; margin-bottom: 10px;">EUR/USD</h2>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 5px;">
+                        <span style="color: var(--primary);">BUY (40%)</span>
+                        <span style="color: var(--danger);">SELL (60%)</span>
+                    </div>
+                    <div class="sentiment-bar">
+                        <div class="sentiment-buy" style="width: 40%;">40%</div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/94765450055" target="_blank" class="whatsapp-float">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="js/script.js"></script>
+    <script>
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Checklist logic
+        document.querySelectorAll('.checklist-item input').forEach(input => {
+            input.addEventListener('change', function() {
+                if(this.checked) {
+                    this.parentElement.classList.add('checked');
+                } else {
+                    this.parentElement.classList.remove('checked');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

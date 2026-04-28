@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Community | RV ACADEMY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="logo" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-chart-line"></i> RV <span>ACADEMY</span>
+            </div>
+            
+            <div class="profile-widget" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                <div style="display: flex; gap: 15px; align-items: center; width: 100%;">
+                    <div class="avatar">S</div>
+                    <div class="info" style="flex: 1;">
+                        <div class="name">Student User</div>
+                        <div style="font-size: 11px; color: var(--primary);">Level 12 Trader</div>
+                    </div>
+                </div>
+                <div style="width: 100%;">
+                    <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px;"><span>XP: 2450/3000</span></div>
+                    <div style="background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px;"><div style="background: var(--primary); width: 80%; height: 100%; border-radius: 2px; box-shadow: 0 0 10px var(--primary-glow);"></div></div>
+                </div>
+                <div style="display: flex; gap: 5px; margin-top: 5px;">
+                    <span title="Risk Manager" style="font-size: 14px; color: #00bfff;"><i class="fa-solid fa-shield-halved"></i></span>
+                    <span title="Gold King" style="font-size: 14px; color: #ffc800;"><i class="fa-solid fa-crown"></i></span>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="student-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li><a href="student-courses.html"><i class="fa-solid fa-play"></i> My Courses</a></li>
+                <li><a href="student-live.html"><i class="fa-solid fa-video"></i> Live Sessions</a></li>
+                <li><a href="student-signals.html"><i class="fa-solid fa-chart-pie"></i> Signal Room</a></li>
+                <li><a href="student-community.html" class="active"><i class="fa-solid fa-users"></i> Community</a></li>
+                <li><a href="student-tools.html"><i class="fa-solid fa-toolbox"></i> Trading Tools</a></li>
+                <li><a href="student-affiliate.html"><i class="fa-solid fa-handshake"></i> Affiliate Program</a></li>
+                <li style="margin-top: auto; padding-top: 50px;"><a href="index.html" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header style="margin-bottom: 30px;">
+                <h1 style="font-size: 28px;">Trader's Lounge</h1>
+                <p style="color: var(--text-muted);">Share your setups, ask questions, and learn from others.</p>
+            </header>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
+                
+                <!-- Main Feed -->
+                <div>
+                    <!-- Post Creation -->
+                    <div class="content-card" style="margin-bottom: 30px;">
+                        <textarea id="postText" class="form-control" rows="3" placeholder="Share your trade setup or ask a question..." style="margin-bottom: 15px; border-color: rgba(255,255,255,0.1);"></textarea>
+                        
+                        <!-- Image Preview Area -->
+                        <div id="imagePreviewContainer" style="display: none; margin-bottom: 15px; position: relative;">
+                            <img id="postImagePreview" src="" style="max-width: 100%; border-radius: 10px; border: 1px solid var(--border);">
+                            <button id="removeImageBtn" class="btn btn-outline" style="position: absolute; top: 10px; right: 10px; padding: 5px 10px; background: rgba(0,0,0,0.5);"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        
+                        <input type="file" id="chartUpload" style="display: none;" accept="image/*">
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="display: flex; gap: 15px;">
+                                <button class="action-btn" style="color: var(--text-main);" onclick="document.getElementById('chartUpload').click();"><i class="fa-solid fa-image" style="color: var(--primary);"></i> Add Chart</button>
+                                <button class="action-btn" style="color: var(--text-main);"><i class="fa-solid fa-chart-line" style="color: #00bfff;"></i> Tag Pair</button>
+                            </div>
+                            <button id="submitPostBtn" class="btn btn-primary" style="padding: 8px 20px;">Post</button>
+                        </div>
+                    </div>
+
+                    <!-- Feed Posts -->
+                    <div class="feed-post">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <div class="avatar" style="width: 40px; height: 40px; font-size: 16px;">K</div>
+                                <div>
+                                    <div style="font-weight: 600;">Kamal Perera <i class="fa-solid fa-medal" style="color: #c0c0c0; font-size: 12px; margin-left: 5px;" title="Level 8 Trader"></i></div>
+                                    <div style="font-size: 12px; color: var(--text-muted);">2 hours ago • $XAUUSD</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Waiting for gold to retrace to the order block before looking for buys. Any thoughts?</p>
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop" class="post-image" alt="Chart Analysis">
+                        <div class="post-actions">
+                            <button class="action-btn"><i class="fa-solid fa-thumbs-up"></i> 12 Likes</button>
+                            <button class="action-btn"><i class="fa-solid fa-comment"></i> 3 Comments</button>
+                        </div>
+                        
+                        <!-- Comments section -->
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05);">
+                            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                                <div class="avatar" style="width: 30px; height: 30px; font-size: 12px; background: var(--secondary);">N</div>
+                                <div>
+                                    <div style="font-size: 13px; font-weight: 600;">Nimali Silva</div>
+                                    <div style="font-size: 13px; color: var(--text-muted);">Looks solid. Be careful of news at 6 PM though.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar -->
+                <div>
+                    <!-- Popular Pairs -->
+                    <div class="content-card" style="padding: 20px;">
+                        <h3 style="margin-bottom: 15px;">Trending Pairs</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                            <span style="background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 15px; font-size: 13px; cursor: pointer;">$XAUUSD (142)</span>
+                            <span style="background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 15px; font-size: 13px; cursor: pointer;">$BTCUSDT (89)</span>
+                            <span style="background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 15px; font-size: 13px; cursor: pointer;">$EURUSD (45)</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/94765450055" target="_blank" class="whatsapp-float">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Firebase and Cloudinary logic for Posts -->
+    <script type="module">
+        import { db } from './js/firebase-config.js';
+        import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        let selectedImageUrl = "";
+        const chartUpload = document.getElementById('chartUpload');
+        const previewContainer = document.getElementById('imagePreviewContainer');
+        const previewImage = document.getElementById('postImagePreview');
+        const submitBtn = document.getElementById('submitPostBtn');
+
+        chartUpload.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if(!file) return;
+
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', 'rvwebpicupload');
+
+            try {
+                const res = await fetch('https://api.cloudinary.com/v1_1/decwloh8b/image/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+                if(data.secure_url) {
+                    selectedImageUrl = data.secure_url;
+                    previewImage.src = selectedImageUrl;
+                    previewContainer.style.display = 'block';
+                } else {
+                    alert('Image upload failed!');
+                }
+            } catch(error) {
+                console.error(error);
+                alert('Upload error.');
+            } finally {
+                submitBtn.innerHTML = 'Post';
+                submitBtn.disabled = false;
+            }
+        });
+
+        document.getElementById('removeImageBtn').addEventListener('click', () => {
+            selectedImageUrl = "";
+            previewContainer.style.display = 'none';
+            chartUpload.value = "";
+        });
+
+        submitBtn.addEventListener('click', async () => {
+            const text = document.getElementById('postText').value;
+            if(!text && !selectedImageUrl) {
+                alert("Please write something or attach an image.");
+                return;
+            }
+
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Posting...';
+            submitBtn.disabled = true;
+
+            try {
+                await addDoc(collection(db, "community_posts"), {
+                    text: text,
+                    imageUrl: selectedImageUrl,
+                    userId: "student_mock_id", // In a real app, get from Auth
+                    userName: "Student User",
+                    timestamp: serverTimestamp(),
+                    likes: 0,
+                    comments: []
+                });
+                
+                alert("Post successfully added to database!");
+                
+                // Reset form
+                document.getElementById('postText').value = "";
+                document.getElementById('removeImageBtn').click();
+                
+            } catch (e) {
+                console.error("Error adding document: ", e);
+                alert("Failed to post.");
+            } finally {
+                submitBtn.innerHTML = 'Post';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

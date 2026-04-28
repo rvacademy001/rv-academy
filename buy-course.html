@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Course | RV ACADEMY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body style="background: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1920&auto=format&fit=crop') center/cover fixed; position: relative;">
+
+    <div style="position: absolute; inset: 0; background: rgba(11,14,20,0.9); z-index: 0;"></div>
+
+    <!-- Navigation -->
+    <nav style="background: transparent; border: none; position: relative; z-index: 1; border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px;">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-chart-line"></i> RV <span>ACADEMY</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="blog.html">Blog</a>
+                <a href="login.html" class="btn btn-outline" style="margin-left: 10px;">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="position: relative; z-index: 1; padding: 50px 20px; text-align: center; max-width: 800px;">
+        <h1 style="font-size: 40px; margin-bottom: 20px; color: #fff;">Join the Elite Trading Community</h1>
+        <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 40px;">Watch the intro video below and click BUY COURSE to get started.</p>
+
+        <!-- Video Player -->
+        <div class="video-protection-wrapper" style="position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 40px; background: #000;">
+            <!-- Transparent overlay to prevent right click / interaction -->
+            <div class="video-overlay" style="position: absolute; inset: 0; z-index: 10; cursor: pointer;" onclick="document.querySelector('.buy-video').style.pointerEvents = 'auto'; this.style.display='none';"></div>
+            
+            <iframe class="buy-video" src="https://www.youtube.com/embed/ScMzIvxBSi4?controls=0&modestbranding=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; pointer-events: none;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+
+        <button class="btn btn-primary" style="font-size: 20px; padding: 15px 40px; width: 100%; max-width: 400px; box-shadow: 0 0 20px var(--primary-glow);" onclick="document.getElementById('paymentDetails').style.display='block'; this.style.display='none';"><i class="fa-solid fa-cart-shopping"></i> BUY COURSE</button>
+
+        <!-- Payment Details (Hidden initially) -->
+        <div id="paymentDetails" class="content-card" style="display: none; text-align: left; margin-top: 30px; animation: slideUp 0.5s ease;">
+            <h3 style="margin-bottom: 20px; text-align: center; color: #fff;"><i class="fa-solid fa-building-columns" style="color: var(--primary);"></i> Bank Transfer Details</h3>
+            <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid var(--primary);">
+                <p style="margin-bottom: 10px;"><strong>Bank Name:</strong> Commercial Bank</p>
+                <p style="margin-bottom: 10px;"><strong>Account Name:</strong> RV Academy</p>
+                <p style="margin-bottom: 10px;"><strong>Account Number:</strong> 1234567890</p>
+                <p style="margin-bottom: 0;"><strong>Branch:</strong> Colombo</p>
+            </div>
+            <p style="color: var(--text-muted); font-size: 14px; text-align: center; margin-bottom: 20px;">Please deposit the course fee and send the payment slip directly via WhatsApp to activate your account.</p>
+            <a href="https://wa.me/94765450055?text=I%20have%20transferred%20the%20payment%20for%20the%20course.%20Here%20is%20the%20slip:" target="_blank" class="btn btn-primary" style="width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px; background: #25D366; border-color: #25D366; color: #fff;">
+                <i class="fa-brands fa-whatsapp" style="font-size: 24px;"></i> Send Slip via WhatsApp (+94765450055)
+            </a>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Payouts | RV ACADEMY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="logo" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-chart-line"></i> RV <span>ADMIN</span>
+            </div>
+            
+            <div class="profile-widget" style="border-color: rgba(255,200,0,0.3);">
+                <div class="avatar" style="background: var(--secondary);">A</div>
+                <div class="info">
+                    <div class="name">Super Admin</div>
+                    <div class="badge" style="color: var(--secondary); background: rgba(255,200,0,0.1);">System Access</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="admin-dashboard.html"><i class="fa-solid fa-chart-pie"></i> Overview</a></li>
+                <li><a href="admin-students.html"><i class="fa-solid fa-users"></i> Students DB</a></li>
+                <li><a href="admin-courses.html"><i class="fa-solid fa-book"></i> Courses Manager</a></li>
+                <li><a href="admin-affiliates.html" class="active"><i class="fa-solid fa-handshake"></i> Affiliates & Payouts</a></li>
+                <li><a href="admin-gamification.html"><i class="fa-solid fa-medal"></i> Gamification</a></li>
+                <li><a href="#"><i class="fa-solid fa-wallet"></i> Sales & Revenue</a></li>
+                <li><a href="admin-announcements.html"><i class="fa-solid fa-bullhorn"></i> Announcements</a></li>
+                <li style="margin-top: auto; padding-top: 50px;"><a href="index.html" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header style="margin-bottom: 30px;">
+                <h1 style="font-size: 28px;">Affiliates & Payouts</h1>
+                <p style="color: var(--text-muted);">Manage student referral earnings and withdrawal requests.</p>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card" style="border-color: var(--danger);">
+                    <div class="stat-icon" style="background: rgba(255,51,102,0.1); color: var(--danger);">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text-muted); font-size: 14px; font-weight: 500;">Pending Payouts</h4>
+                        <div style="font-size: 24px; font-weight: 600;">Rs. 12,000</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #00ff88; background: rgba(0, 255, 136, 0.1);">
+                        <i class="fa-solid fa-check-double"></i>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text-muted); font-size: 14px; font-weight: 500;">Total Paid Out</h4>
+                        <div style="font-size: 24px; font-weight: 600;">Rs. 45,000</div>
+                    </div>
+                </div>
+                <div class="stat-card" style="flex-direction: column; align-items: flex-start; gap: 10px; background: rgba(0,0,0,0.2);">
+                    <h4 style="color: var(--text-muted); font-size: 14px; font-weight: 500;"><i class="fa-solid fa-sliders"></i> Withdrawal Settings</h4>
+                    <div style="display: flex; gap: 10px; width: 100%;">
+                        <input type="number" class="form-control" placeholder="Min (e.g. 1500)" value="1500" style="padding: 5px;">
+                        <input type="number" class="form-control" placeholder="Max (e.g. 50000)" value="50000" style="padding: 5px;">
+                    </div>
+                    <button class="btn btn-primary" style="padding: 5px 15px; font-size: 12px; width: 100%;" onclick="alert('Withdrawal Limits Updated!')">Save Limits</button>
+                </div>
+            </div>
+
+            <!-- Pending Requests -->
+            <div class="content-card" style="padding: 0; overflow: hidden; margin-bottom: 30px;">
+                <div style="padding: 20px 25px; border-bottom: 1px solid var(--border); background: rgba(255,51,102,0.05);">
+                    <h3 style="margin: 0; color: var(--danger);">Action Required: Pending Requests</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Amount</th>
+                                <th>Bank Details</th>
+                                <th>Date Requested</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Student User</strong><br>
+                                    <span style="font-size: 12px; color: var(--text-muted);">RV-STUDENT88</span>
+                                </td>
+                                <td style="font-weight: 600; color: var(--primary);">Rs. 4,500</td>
+                                <td>
+                                    <span style="font-size: 14px;">BOC - 8899776655</span><br>
+                                    <span style="font-size: 12px; color: var(--text-muted);">S. User Name</span>
+                                </td>
+                                <td>Oct 27, 2024</td>
+                                <td>
+                                    <button class="btn btn-outline" style="padding: 6px 12px; font-size: 12px; border-color: var(--primary); color: var(--primary);" onclick="this.innerHTML='<i class=\'fa-solid fa-check\'></i> Paid'; this.classList.remove('btn-outline'); this.classList.add('btn-primary');"><i class="fa-solid fa-money-bill-transfer"></i> Mark as Paid</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Nimali Silva</strong><br>
+                                    <span style="font-size: 12px; color: var(--text-muted);">RV-NIMAL22</span>
+                                </td>
+                                <td style="font-weight: 600; color: var(--primary);">Rs. 3,000</td>
+                                <td>
+                                    <span style="font-size: 14px;">Commercial - 11223344</span><br>
+                                    <span style="font-size: 12px; color: var(--text-muted);">Nimali Silva</span>
+                                </td>
+                                <td>Oct 26, 2024</td>
+                                <td>
+                                    <button class="btn btn-outline" style="padding: 6px 12px; font-size: 12px; border-color: var(--primary); color: var(--primary);"><i class="fa-solid fa-money-bill-transfer"></i> Mark as Paid</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Affiliate Leaderboard -->
+            <div class="content-card" style="padding: 0; overflow: hidden;">
+                <div style="padding: 20px 25px; border-bottom: 1px solid var(--border);">
+                    <h3 style="margin: 0;">Top Affiliates</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Referral Code</th>
+                                <th>Total Referrals</th>
+                                <th>Total Earned</th>
+                                <th>Manual Adjust</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Student User <span class="badge" style="background: #c0c0c0; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 10px;">Silver</span></td>
+                                <td>RV-STUDENT88</td>
+                                <td>5</td>
+                                <td>Rs. 7,500</td>
+                                <td><button class="btn btn-outline" style="padding: 4px 8px; font-size: 12px;" onclick="prompt('Enter amount to add/deduct (+1000 or -500):')"><i class="fa-solid fa-plus-minus"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td>Kamal Perera</td>
+                                <td>RV-KAMAL01</td>
+                                <td>3</td>
+                                <td>Rs. 4,500</td>
+                                <td><button class="btn btn-outline" style="padding: 4px 8px; font-size: 12px;" onclick="prompt('Enter amount to add/deduct (+1000 or -500):')"><i class="fa-solid fa-plus-minus"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td>Nimali Silva</td>
+                                <td>RV-NIMAL22</td>
+                                <td>2</td>
+                                <td>Rs. 3,000</td>
+                                <td><button class="btn btn-outline" style="padding: 4px 8px; font-size: 12px;" onclick="prompt('Enter amount to add/deduct (+1000 or -500):')"><i class="fa-solid fa-plus-minus"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

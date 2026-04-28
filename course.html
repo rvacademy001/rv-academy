@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details | RV ACADEMY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-chart-line"></i> RV <span>ACADEMY</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="course.html" style="color: var(--primary);">Course</a>
+                <a href="buy-course.html">Buy Course</a>
+                <a href="blog.html">Blog</a>
+                <a href="login.html" class="btn btn-outline" style="margin-left: 10px;">Student Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="course-header">
+            <h1 style="font-size: 42px; margin-bottom: 15px;">Professional Masterclass in <span>Trading</span></h1>
+            <p style="color: var(--text-muted); font-size: 18px; max-width: 600px; margin: 0 auto;">අවදානම අවම කර නිවැරදිව ආයෝජනය කරන ආකාරය A සිට Z දක්වා ඉගෙන ගන්න.</p>
+        </div>
+
+        <div class="course-content">
+            <div class="course-details">
+                <h2 style="margin-bottom: 25px;">පාඨමාලාවේ අන්තර්ගතය</h2>
+                
+                <div class="course-modules">
+                    <div class="module">
+                        <div class="module-header" onclick="toggleModule(this)">
+                            <span>Module 1: Introduction to Financial Markets</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="module-body" style="display: none; padding: 20px; color: var(--text-muted); background: rgba(0,0,0,0.2);">
+                            <p><i class="fa-solid fa-play" style="color: var(--primary); margin-right: 10px;"></i> What is Forex/Crypto?</p>
+                            <p style="margin-top: 10px;"><i class="fa-solid fa-play" style="color: var(--primary); margin-right: 10px;"></i> Brokers & Platforms setup</p>
+                            <p style="margin-top: 10px;"><i class="fa-solid fa-play" style="color: var(--primary); margin-right: 10px;"></i> Understanding Pips, Lots & Leverage</p>
+                        </div>
+                    </div>
+                    
+                    <div class="module">
+                        <div class="module-header" onclick="toggleModule(this)">
+                            <span>Module 2: Technical Analysis</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="module-body" style="display: none; padding: 20px; color: var(--text-muted); background: rgba(0,0,0,0.2);">
+                            <p><i class="fa-solid fa-play" style="color: var(--primary); margin-right: 10px;"></i> Candlestick Patterns</p>
+                            <p style="margin-top: 10px;"><i class="fa-solid fa-play" style="color: var(--primary); margin-right: 10px;"></i> Support and Resistance</p>
+                            <p style="margin-top: 10px;"><i class="fa-solid fa-play" style="color: var(--primary); margin-right: 10px;"></i> Trendlines & Channels</p>
+                        </div>
+                    </div>
+
+                    <div class="module">
+                        <div class="module-header" onclick="toggleModule(this)">
+                            <span>Module 3: Advanced Strategies & Risk Management</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="module-body" style="display: none; padding: 20px; color: var(--text-muted); background: rgba(0,0,0,0.2);">
+                            <p><i class="fa-solid fa-play" style="color: var(--primary); margin-right: 10px;"></i> Institutional Trading Concepts</p>
+                            <p style="margin-top: 10px;"><i class="fa-solid fa-play" style="color: var(--primary); margin-right: 10px;"></i> Risk to Reward Ratio</p>
+                            <p style="margin-top: 10px;"><i class="fa-solid fa-play" style="color: var(--primary); margin-right: 10px;"></i> Trading Psychology</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-sidebar">
+                <div class="pricing-card">
+                    <h3>Full Course Access</h3>
+                    <div class="price">Rs. 15,000 <span>/ lifetime</span></div>
+                    
+                    <ul style="list-style: none; text-align: left; margin: 30px 0; color: var(--text-muted);">
+                        <li style="margin-bottom: 15px;"><i class="fa-solid fa-check" style="color: var(--primary); margin-right: 10px;"></i> 50+ Video Lessons</li>
+                        <li style="margin-bottom: 15px;"><i class="fa-solid fa-check" style="color: var(--primary); margin-right: 10px;"></i> Lifetime Access</li>
+                        <li style="margin-bottom: 15px;"><i class="fa-solid fa-check" style="color: var(--primary); margin-right: 10px;"></i> VIP Signal Group Access</li>
+                        <li style="margin-bottom: 15px;"><i class="fa-solid fa-check" style="color: var(--primary); margin-right: 10px;"></i> Weekly Live Sessions</li>
+                    </ul>
+                    
+                    <a href="buy-course.html" class="btn btn-primary" style="width: 100%; font-size: 18px; padding: 15px;">Buy Now</a>
+                    <p style="margin-top: 15px; font-size: 12px; color: var(--text-muted);"><i class="fa-solid fa-shield-halved"></i> 100% Secure Payment</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

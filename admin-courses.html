@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Manager | RV ACADEMY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="logo" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-chart-line"></i> RV <span>ADMIN</span>
+            </div>
+            
+            <div class="profile-widget" style="border-color: rgba(255,200,0,0.3);">
+                <div class="avatar" style="background: var(--secondary);">A</div>
+                <div class="info">
+                    <div class="name">Super Admin</div>
+                    <div class="badge" style="color: var(--secondary); background: rgba(255,200,0,0.1);">System Access</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="admin-dashboard.html"><i class="fa-solid fa-chart-pie"></i> Overview</a></li>
+                <li><a href="admin-students.html"><i class="fa-solid fa-users"></i> Students DB</a></li>
+                <li><a href="admin-courses.html" class="active"><i class="fa-solid fa-book"></i> Courses Manager</a></li>
+                <li><a href="admin-affiliates.html"><i class="fa-solid fa-handshake"></i> Affiliates & Payouts</a></li>
+                <li><a href="admin-gamification.html"><i class="fa-solid fa-medal"></i> Gamification</a></li>
+                <li><a href="admin-sales.html"><i class="fa-solid fa-wallet"></i> Sales & Revenue</a></li>
+                <li><a href="admin-buy-page.html"><i class="fa-solid fa-cart-shopping"></i> Buy Page Video</a></li>
+                <li><a href="admin-announcements.html"><i class="fa-solid fa-bullhorn"></i> Announcements</a></li>
+                <li style="margin-top: auto; padding-top: 50px;"><a href="index.html" style="color: var(--danger);"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+                <div>
+                    <h1 style="font-size: 28px;">Course Categories & Content</h1>
+                    <p style="color: var(--text-muted);">Organize your videos into specific categories.</p>
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <button class="btn btn-outline" onclick="document.getElementById('addCategoryModal').classList.add('active')"><i class="fa-solid fa-layer-group"></i> Add Category</button>
+                    <button class="btn btn-primary" onclick="document.getElementById('addVideoModal').classList.add('active')"><i class="fa-solid fa-video"></i> Upload Video</button>
+                </div>
+            </header>
+
+            <div class="content-card">
+                <h3 style="margin-bottom: 20px;">Manage Curriculum</h3>
+                
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    
+                    <!-- Category Block -->
+                    <div style="border: 1px solid var(--primary); border-radius: 10px; overflow: hidden;">
+                        <div style="background: rgba(0,255,136,0.1); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;">
+                            <h4 style="color: var(--primary); margin: 0;"><i class="fa-solid fa-folder-open"></i> CATEGORY: BEGINNER</h4>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px; border-color: var(--text-muted); color: var(--text-main);"><i class="fa-solid fa-pen"></i> Edit Category</button>
+                                <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px; border-color: var(--danger); color: var(--danger);"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div style="padding: 15px 20px; background: rgba(0,0,0,0.2); display: flex; justify-content: space-between; border-bottom: 1px solid var(--border);">
+                            <div><strong>1.1 What is Forex/Crypto</strong> (12m 30s)</div>
+                            <div style="color: var(--text-muted);"><i class="fa-solid fa-pen" style="cursor: pointer;"></i></div>
+                        </div>
+                        <div style="padding: 15px 20px; background: rgba(0,0,0,0.2); display: flex; justify-content: space-between;">
+                            <div><strong>1.2 Brokers Setup</strong> (24m 10s)</div>
+                            <div style="color: var(--text-muted);"><i class="fa-solid fa-pen" style="cursor: pointer;"></i></div>
+                        </div>
+                    </div>
+
+                    <!-- Category Block -->
+                    <div style="border: 1px solid var(--border); border-radius: 10px; overflow: hidden;">
+                        <div style="background: rgba(255,255,255,0.05); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;">
+                            <h4 style="color: var(--text-main); margin: 0;"><i class="fa-solid fa-folder-open"></i> CATEGORY: INTERMEDIATE</h4>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px; border-color: var(--text-muted); color: var(--text-main);"><i class="fa-solid fa-pen"></i> Edit Category</button>
+                                <button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px; border-color: var(--danger); color: var(--danger);"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div style="padding: 15px 20px; background: rgba(0,0,0,0.2); display: flex; justify-content: space-between;">
+                            <div><strong>2.1 Candlestick Patterns</strong> (45m 00s) + Quiz Attached</div>
+                            <div style="color: var(--text-muted);"><i class="fa-solid fa-pen" style="cursor: pointer;"></i></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Category Modal -->
+    <div class="modal-overlay" id="addCategoryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Category</h2>
+                <button class="modal-close" onclick="document.getElementById('addCategoryModal').classList.remove('active')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <form onsubmit="event.preventDefault(); alert('Category Added Successfully!'); document.getElementById('addCategoryModal').classList.remove('active');">
+                <div class="form-group">
+                    <label>Category Name</label>
+                    <input type="text" class="form-control" placeholder="e.g. Advanced Strategy" required>
+                </div>
+                <div class="form-group">
+                    <label>Description (Optional)</label>
+                    <input type="text" class="form-control" placeholder="Brief info about this category">
+                </div>
+
+                <div style="display: flex; gap: 15px; margin-top: 30px;">
+                    <button type="button" class="btn btn-outline" style="flex: 1;" onclick="document.getElementById('addCategoryModal').classList.remove('active')">Cancel</button>
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Save Category</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Video Modal -->
+    <div class="modal-overlay" id="addVideoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Video Lesson</h2>
+                <button class="modal-close" onclick="document.getElementById('addVideoModal').classList.remove('active')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <form id="addVideoForm">
+                <div class="form-group">
+                    <label>Course / Category</label>
+                    <select id="videoCategory" class="form-control" required>
+                        <option value="">Select Category</option>
+                        <option value="beginner">CATEGORY: BEGINNER</option>
+                        <option value="intermediate">CATEGORY: INTERMEDIATE</option>
+                        <option value="advanced">CATEGORY: ADVANCED</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Video Title</label>
+                    <input type="text" id="videoTitle" class="form-control" placeholder="e.g. 1.3 How to set up MT4" required>
+                </div>
+                <div class="form-group">
+                    <label>Google Drive Embed Link</label>
+                    <input type="url" id="videoLink" class="form-control" placeholder="e.g. https://drive.google.com/file/d/VIDEO_ID/preview" required>
+                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 5px;">Must end with /preview</p>
+                </div>
+
+                <div style="display: flex; gap: 15px; margin-top: 30px;">
+                    <button type="button" class="btn btn-outline" style="flex: 1;" onclick="document.getElementById('addVideoModal').classList.remove('active')">Cancel</button>
+                    <button type="submit" id="saveVideoBtn" class="btn btn-primary" style="flex: 1;">Save Video</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { addCourseVideo } from './js/firebase-operations.js';
+
+        const form = document.getElementById('addVideoForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('saveVideoBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+            btn.disabled = true;
+
+            try {
+                const category = document.getElementById('videoCategory').value;
+                const title = document.getElementById('videoTitle').value;
+                const link = document.getElementById('videoLink').value;
+
+                await addCourseVideo(category, title, link);
+                alert('Video added to database successfully!');
+                form.reset();
+                document.getElementById('addVideoModal').classList.remove('active');
+            } catch (err) {
+                alert('Error saving video. Please check console.');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
